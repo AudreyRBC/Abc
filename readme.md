@@ -24,10 +24,10 @@ ABC.filter({
 
 ###Inputs availables
 
-- [`search`](####search)
-- [`select`](####select)
-- [`checkbox`](####checkbox)
-- [`radio`](####radio)
+- [`search`](#search)
+- [`select`](#select)
+- [`checkbox`](#checkbox)
+- [`radio`](#radio)
 - range // not yet
 
 ###Events availables
@@ -45,7 +45,6 @@ ABC.filter({
  Your json url who contain all informations to compare between filters and datas
 
 ___
-___
 
 `create_url`  _typeof boolean_
 
@@ -55,7 +54,6 @@ Create a friendly url depending on selected filters.
 **default set to false**
 
 ___
-___
 
 `debug`  _typeof boolean_
 
@@ -64,8 +62,8 @@ ___
 Add warning in the console or more specific error.
 **default set to false**
 ___
-___
-####Results
+
+###Results
 
 `results` _typeof object_
 
@@ -144,7 +142,7 @@ Not available
 
 ___
 ___
-####Number of results
+###Number of results
 
 `nb_results` _typeof object_
 
@@ -194,7 +192,7 @@ Use `-var-` to replace by the number of results.
 ___
 ___
 
-####Form
+###Form
 
 `form` _typeof object_
 
@@ -231,7 +229,7 @@ Define submit target on `submit` or `redirect` actions
 ___
 ___
 
-####Inputs
+###Inputs
 
 `inputs` _typeof object_
 
@@ -246,7 +244,7 @@ inputs: {
 ```
 ___
 
-####Search
+#Search
 
 `inputs`//`search` _typeof array_
 
@@ -317,7 +315,7 @@ Define a default value for your input.
 ___
 ___
 
-####Select
+#Select
 
 `inputs`//`select` _typeof array_
 
@@ -418,7 +416,7 @@ ___
 ___
 
 
-####Checkbox
+#Checkbox
 
 `inputs`//`checkbox` _typeof array_
 
@@ -505,7 +503,7 @@ the value of the checkbox in the url can be replaced by a nicer name.
 ___
 ___
 
-####Radio
+#Radio
 
 `inputs`//`radio` _typeof array_
 
