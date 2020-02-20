@@ -1,7 +1,7 @@
-# ABC Filter 
+#ABC Filter 
 ABC filter is an open librairy for people who don't make any other filter in their life.
 
-## How to use 
+##How to use 
 Make sure to install the latest version of ABC filter 
 
 `npm i abcfilter`
@@ -18,25 +18,25 @@ ABC.filter({
 });
 
 ```
-### Formats availables
+###Formats availables
 
 - Json to HTML
 
-### Inputs availables
+###Inputs availables
 
-- select 
-- checkbox
-- radio
-- search 
+- [`search`](####search)
+- [`select`](####select)
+- [`checkbox`](####checkbox)
+- [`radio`](####radio)
 - range // not yet
 
-### Events availables
+###Events availables
 
 - On change (https://www.wolubilis.be/type/a-voir/spectacles/)
 - On click ()
 - On redirect (https://www.tousapied.be/)
 
-### Params
+###Params
 
 
 
@@ -48,6 +48,7 @@ ___
 ___
 
 `create_url`  _typeof boolean_
+
 **optionnal**
 
 Create a friendly url depending on selected filters.
@@ -57,13 +58,14 @@ ___
 ___
 
 `debug`  _typeof boolean_
+
 **optionnal**
 
 Add warning in the console or more specific error.
 **default set to false**
 ___
 ___
-#### Results
+####Results
 
 `results` _typeof object_
 
@@ -95,6 +97,7 @@ Define params in the json to base on and can match with ids elements.
 ___
 
 `results`//`visible_class` _typeof string_
+
 **optionnal**
 
 Add class when visible.
@@ -102,6 +105,7 @@ Add class when visible.
 ___
 
 `results`//`hidden_class` _typeof string_
+
 **optionnal**
 
 Add class when hide.
@@ -109,6 +113,7 @@ Add class when hide.
 ___
 
 `results`//`before_show` _typeof function_
+
 **optionnal**
 
 Not available
@@ -116,6 +121,7 @@ Not available
 ___
 
 `results`//`before_hide` _typeof function_
+
 **optionnal**
 
 Not available
@@ -123,6 +129,7 @@ Not available
 ___
 
 `results`//`after_show` _typeof function_
+
 **optionnal**
 
 Not available
@@ -130,15 +137,17 @@ Not available
 ___
 
 `results`//`after_hide` _typeof function_
+
 **optionnal**
 
 Not available
 
 ___
 ___
-#### Number of results
+####Number of results
 
 `nb_results` _typeof object_
+
 **optionnal**
 
 Define the number of results in your HTML.
@@ -159,6 +168,7 @@ Define targets elements by `class`, `attribute` or `id`
 ___
 
 `nb_results`//`no_results` _typeof string_
+
 **optionnal**
 
 Sentence in case of no result.
@@ -166,6 +176,7 @@ Sentence in case of no result.
 ___
 
 `nb_results`//`no_results` _typeof string_
+
 **optionnal**
 
 Sentence in case of one result. 
@@ -174,6 +185,7 @@ Use `-var-` to replace by the number of results.
 ___
 
 `nb_results`//`no_results` _typeof string_
+
 **optionnal**
 
 Sentence in case of more than one result. 
@@ -182,7 +194,7 @@ Use `-var-` to replace by the number of results.
 ___
 ___
 
-#### Form
+####Form
 
 `form` _typeof object_
 
@@ -219,7 +231,7 @@ Define submit target on `submit` or `redirect` actions
 ___
 ___
 
-#### Inputs
+####Inputs
 
 `inputs` _typeof object_
 
@@ -234,9 +246,10 @@ inputs: {
 ```
 ___
 
-#### Search
+####Search
 
 `inputs`//`search` _typeof array_
+
 **optionnal**
 
 Define one or more `object` by input text or search to filtered
@@ -268,14 +281,17 @@ Datas to compare with the value of the input.
 ___
 
 `inputs`//`search`//`url_name` _typeof string_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 You can add a nice name to replace the input attribute name in the url.
 
 ___
 
 `inputs`//`search`//`threshold` _typeof number_
+
 **optionnal**
 
 Define a error threshold 
@@ -284,6 +300,7 @@ Define a error threshold
 ___
 
 `inputs`//`search`//`relation` _typeof string_
+
 **optionnal**
 
 Relation between this input and other inputs in the form.
@@ -292,6 +309,7 @@ Relation between this input and other inputs in the form.
 ___
 
 `inputs`//`search`//`value` _typeof string_
+
 **optionnal**
 
 Define a default value for your input.
@@ -299,9 +317,10 @@ Define a default value for your input.
 ___
 ___
 
-#### Select
+####Select
 
 `inputs`//`select` _typeof array_
+
 **optionnal**
 
 Define one or more `object` by select input  to filtered
@@ -335,14 +354,17 @@ Datas to compare with the value of the input.
 ___
 
 `inputs`//`select`//`url_name` _typeof string_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 You can add a nice name to replace the input attribute name in the url.
 
 ___
 
 `inputs`//`select`//`multiple` _typeof boolean_
+
 **optionnal**
 
 Define if the select input can have several values selected in the same time 
@@ -352,6 +374,7 @@ Do not forget to add the attribute on your select
 ___
 
 `inputs`//`select`//`operator` _typeof string_
+
 **optionnal**
 
 **MULTIPLE MODE ONLY**
@@ -363,6 +386,7 @@ ___
 
 
 `inputs`//`select`//`relation` _typeof string_
+
 **optionnal**
 
 Relation between this input and other inputs in the form.
@@ -371,6 +395,7 @@ Relation between this input and other inputs in the form.
 ___
 
 `inputs`//`select`//`value` _typeof array_
+
 **optionnal**
 
 Define a default value for your select.
@@ -381,9 +406,11 @@ Define several values for your select.
 ___
 
 `inputs`//`select`//`id` _typeof boolean_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 If `id` is set on true AND options tags have an id attribute, 
 the value of the option in the url can be replaced by a nicer name.
 
@@ -391,9 +418,10 @@ ___
 ___
 
 
-#### Checkbox
+####Checkbox
 
 `inputs`//`checkbox` _typeof array_
+
 **optionnal**
 
 Define one or more `object` by checkbox group to filtered
@@ -427,15 +455,18 @@ Datas to compare with the value of the input.
 ___
 
 `inputs`//`checkbox`//`url_name` _typeof string_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 You can add a nice name to replace the input attribute name in the url.
 
 ___
 
 
 `inputs`//`checkbox`//`operator` _typeof string_
+
 **optionnal**
 
 Relation between inputs checked in a group.
@@ -446,6 +477,7 @@ ___
 
 
 `inputs`//`checkbox`//`relation` _typeof string_
+
 **optionnal**
 
 Relation between this input and other inputs in the form.
@@ -454,6 +486,7 @@ Relation between this input and other inputs in the form.
 ___
 
 `inputs`//`checkbox`//`value` _typeof array_
+
 **optionnal**
 
 Define one or several values for your checkbox group.
@@ -461,18 +494,21 @@ Define one or several values for your checkbox group.
 ___
 
 `inputs`//`checkbox`//`id` _typeof boolean_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 If `id` is set on true AND checkbox tags have an id attribute, 
 the value of the checkbox in the url can be replaced by a nicer name.
 
 ___
 ___
 
-#### Radio
+####Radio
 
 `inputs`//`radio` _typeof array_
+
 **optionnal**
 
 Define one or more `object` by radio group to filtered
@@ -505,15 +541,18 @@ Datas to compare with the value of the input.
 ___
 
 `inputs`//`radio`//`url_name` _typeof string_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 You can add a nice name to replace the input attribute name in the url.
 
 ___
 
 
 `inputs`//`radio`//`relation` _typeof string_
+
 **optionnal**
 
 Relation between this input and other inputs in the form.
@@ -522,6 +561,7 @@ Relation between this input and other inputs in the form.
 ___
 
 `inputs`//`radio`//`value` _typeof array_
+
 **optionnal**
 
 Define one or several values for your radio group.
@@ -529,9 +569,11 @@ Define one or several values for your radio group.
 ___
 
 `inputs`//`radio`//`id` _typeof boolean_
+
 **optionnal**
 
 **CREATE URL MODE ONLY**
+
 If `id` is set on true AND radio tags have an id attribute, 
 the value of the radio in the url can be replaced by a nicer name.
 
