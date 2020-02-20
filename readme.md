@@ -247,7 +247,7 @@ ___
 
 
 
-# #Search
+# Search
 
 `inputs`//`search` _typeof array_
 
@@ -318,7 +318,7 @@ Define a default value for your input.
 ___
 ___
 
-# #Select
+# Select
 
 `inputs`//`select` _typeof array_
 
@@ -419,7 +419,7 @@ ___
 ___
 
 
-# #Checkbox
+# Checkbox
 
 `inputs`//`checkbox` _typeof array_
 
@@ -506,7 +506,7 @@ the value of the checkbox in the url can be replaced by a nicer name.
 ___
 ___
 
-# #Radio
+# Radio
 
 `inputs`//`radio` _typeof array_
 
