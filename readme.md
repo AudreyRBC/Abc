@@ -246,7 +246,8 @@ inputs: {
 ___
 
 
-# Search
+
+# #Search
 
 `inputs`//`search` _typeof array_
 
