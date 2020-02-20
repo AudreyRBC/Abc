@@ -1,13 +1,13 @@
-#ABC Filter 
+# ABC Filter 
+
 ABC filter is an open librairy for people who don't make any other filter in their life.
 
-##How to use 
+## How to use 
+
 Make sure to install the latest version of ABC filter 
 
 `npm i abcfilter`
 
-
-All calls are stocks in an simple object :
 
 ```
 import ABC from 'abcfilter'
@@ -18,11 +18,12 @@ ABC.filter({
 });
 
 ```
-###Formats availables
+
+### Formats availables
 
 - Json to HTML
 
-###Inputs availables
+### Inputs availables
 
 - [`search`](#search)
 - [`select`](#select)
@@ -30,13 +31,13 @@ ABC.filter({
 - [`radio`](#radio)
 - range // not yet
 
-###Events availables
+### Events availables
 
 - On change (https://www.wolubilis.be/type/a-voir/spectacles/)
 - On click ()
 - On redirect (https://www.tousapied.be/)
 
-###Params
+### Params
 
 
 
@@ -63,7 +64,7 @@ Add warning in the console or more specific error.
 **default set to false**
 ___
 
-###Results
+### Results
 
 `results` _typeof object_
 
@@ -142,7 +143,7 @@ Not available
 
 ___
 ___
-###Number of results
+### Number of results
 
 `nb_results` _typeof object_
 
@@ -192,7 +193,7 @@ Use `-var-` to replace by the number of results.
 ___
 ___
 
-###Form
+### Form
 
 `form` _typeof object_
 
@@ -229,7 +230,7 @@ Define submit target on `submit` or `redirect` actions
 ___
 ___
 
-###Inputs
+### Inputs
 
 `inputs` _typeof object_
 
@@ -244,7 +245,8 @@ inputs: {
 ```
 ___
 
-#Search
+
+# Search
 
 `inputs`//`search` _typeof array_
 
@@ -315,7 +317,7 @@ Define a default value for your input.
 ___
 ___
 
-#Select
+# Select
 
 `inputs`//`select` _typeof array_
 
@@ -416,7 +418,7 @@ ___
 ___
 
 
-#Checkbox
+# Checkbox
 
 `inputs`//`checkbox` _typeof array_
 
@@ -503,7 +505,7 @@ the value of the checkbox in the url can be replaced by a nicer name.
 ___
 ___
 
-#Radio
+# Radio
 
 `inputs`//`radio` _typeof array_
 
