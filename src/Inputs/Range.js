@@ -4,11 +4,13 @@ export function Range(){
     this.url_name= false
     this.min = {
         text:   false,
-        default: false
+        default: false,
+        value: false,
     }
     this.max = {
         text:    false,
-        default: false
+        default: false,
+        value: false,
     }
     this.multiple= false
 }

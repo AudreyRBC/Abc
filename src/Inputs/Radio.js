@@ -1,13 +1,9 @@
 var { inArray }  = require ('../Helpers/Array' );
 module.exports = () => { return new Radio() }
 function Radio(){
-  this.name    = false
+  this.name    = false 
   this.compare = false
-  this.group   = []
-  this.group.operator = "="
-  this.group.compare = false
   this.url_name= false
-  this.operator= "and"
   this.relation= "and"
   this.value   = []
   this.id      = true
