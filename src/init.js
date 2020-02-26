@@ -14,7 +14,7 @@ var ABC = module.exports = {
 
         if( params.inputs ) abc.setInputs(params.inputs)
 
-        const datas = new Datas();
-        datas.get( abc ) ;
+        abc.alldatas = new Datas();
+        abc.alldatas.get( abc ) ;
     }
 }

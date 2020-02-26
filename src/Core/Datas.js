@@ -32,10 +32,10 @@ Datas.prototype.get = function(el) {
         if( el.results.template ) this.container = document.querySelector(el.results.container)
        
           
-        el.datas = this.filtered()
+        el.datas = this.filtered(this.datas, el)
 
         if( el.nb_results && el.nb_results.target) el.get_nbResult = new NumberResults(el.nb_results, el.datas.length)
-
+        
         console.info("ABC Ready")
         if(el.debug) {
           console.info( "url: " + el.options.url)
@@ -49,17 +49,21 @@ Datas.prototype.get = function(el) {
   })
 }
 
-Datas.prototype.filtered = function() {
-  return this.datas.filter( d => {
+Datas.prototype.filtered = function(datas, el) {
+  return datas.filter( (d, i)=> {
     //Status
+    if(el.datas[i]) return
     d.hide = false;
 
-
-    if( this.container ) d.template = new Template(this.results, d, this.container)
+    console.log();
+    
+    if( this.container && !d.abc_selector ) d.template = new Template(this.results, d, this.container)
     
     //stock DOM element
-    d.abc_selector = document.querySelector(`#${this.results.prefix}${d[this.results.id]}`)
-
+    const id = inArray(d, this.results.id);
+    
+    d.abc_selector = document.querySelector(`#${this.results.prefix}${id}`)
+    
     if(d.abc_selector) return d;
   });
 

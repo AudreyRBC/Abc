@@ -9,6 +9,8 @@ var Search = require( '../Inputs/Search' );
 
 var Url = require ( '../Core/Url' );
 
+var LoadMore = require ( '../Options/LoadMore' );
+
 
 module.exports = ( params ) => { return new Filter( params ) }
 
@@ -21,6 +23,7 @@ function Filter(params){
 
     this.url = params.create_url ? new Url() : false;
     this.debug = params.debug ? params.debug : false;
+    this.datas = [];
     this.results = {
       target:           false,
       action:           false,
@@ -47,6 +50,10 @@ function Filter(params){
         action: '',
         target: '',
     }
+
+    this.load_more = new LoadMore();
+
+    
     return this;
 
 };
@@ -57,7 +64,11 @@ Filter.prototype.construct = function(params){
     if (params.results) this.results = setArray(this.results, params.results);
     if (params.nb_results) this.nb_results = setArray(this.nb_results, params.nb_results);
     if (params.form) this.form = setArray(this.form, params.form);
-
+    if (params.load_more) {
+        this.load_more = setArray(this.load_more, params.load_more)
+        this.load_more.init(this)
+    };
+    
     return this;
 
 } 

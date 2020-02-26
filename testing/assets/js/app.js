@@ -2,28 +2,24 @@ import  "../scss/app.scss"
 
 
 ABC.filter({
-    url    :  `https://api.jcdecaux.com/vls/v1/stations?apiKey=6d5071ed0d0b3b68462ad73df43fd9e5479b03d6&contract=Bruxelles-Capitale`,
+    url    :  `https://bruxellesdata.opendatasoft.com/api/records/1.0/search/?dataset=stations-villo-disponibilites-en-temps-reel&rows=10`,
     create_url: true,
     debug:true,
     results :
     {
       target   : '.abc',
       action   : 'hide',
-      id       : 'number',
+      id       : 'fields.number',
       prefix   : 'abc-',
-      template : ({ number, name, available_bike_stands }) => {
-          return `<div class="abc" id="abc-${number}">
-                      <h3>${name}</h3> 
-                      <p>${available_bike_stands}</p>
+      path     : 'records',
+      template : ({ fields }) => {
+          return `<div class="abc" id="abc-${fields.number}">
+                      <h3>${fields.name}</h3> 
+                      <p>${fields.available_bike_stands}</p>
           </div>`
           },
         container: '.abc-results'
       },
-    // infiniteScroll : {
-    //   target      : '.pager--scroll',
-    //   container   : '[data-view]',
-    //   thresholds  :  window.innerHeight,
-    // },
     nb_results : {
       target: '.abc-nbresults',
       no_results: ( number ) => `${number} ok`,
@@ -40,7 +36,7 @@ ABC.filter({
       range: [
         {
           // name: "m_range_min",
-          compare: "available_bike_stands",
+          compare: "fields.available_bike_stands",
           url_name: "nombre-de-place",
           multiple: true,
           min: {
@@ -51,6 +47,15 @@ ABC.filter({
           }
         }
       ],
+    },
+    load_more : {
+      url : {
+        params: "rows",
+        add: 5
+      },
+      action: 'click',
+      target: '.btn'
+      // thresold: window.innerHeight
     }
 
     

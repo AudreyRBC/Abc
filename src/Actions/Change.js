@@ -21,6 +21,7 @@ onChange.prototype.bindEvent = function(){
   events.forEach( event => {
     this.el.formObj.addEventListener(event, e => {
       if (e.keyCode === 13) return;
+      
       this.update(e);
       if(this.el.url) location.hash = this.el.url.search.toString()
       this.filter( )
@@ -106,7 +107,7 @@ onChange.prototype.get = function(array, data) {
 onChange.prototype.filter = function(){
   let inputs = this.filterByKey("search");
   let datas  = this.el.datas
-
+  
   if( this.el.inputs.search ) this.el.inputs.search.forEach( s => { datas = s.validate(  this.el.datas ) } );
 
   let nbs = this.el.datas.filter( data => {
@@ -117,6 +118,7 @@ onChange.prototype.filter = function(){
 
 
     let result = compare.filter( t => t );
+  
     
     data.hide = datas && datas.indexOf(data) === -1 ? true : false;
 
