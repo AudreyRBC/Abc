@@ -1,8 +1,9 @@
-var { setArray }  = require ('../Helpers/Array' );
+var { setArray, setArrayRange }  = require ('../Helpers/Array' );
 
-// import {Range} from '../Inputs/Range';
+
 var Checkbox = require( '../Inputs/Checkbox' );
 var Radio = require( '../Inputs/Radio' );
+var Range = require( '../Inputs/Range' );
 var Select = require( '../Inputs/Select' );
 var Search = require( '../Inputs/Search' );
 
@@ -24,10 +25,14 @@ function Filter(params){
       target:           false,
       action:           false,
       id    :           false,
+      path    :         '',
+      prefix       :    '',
       visible_class:    false,
       hidden_class :    false,
       before_show  :    false,
       before_hide  :    false,
+      template     :    false,
+      container    :    ""
     };
 
     this.nb_results = {
@@ -55,7 +60,7 @@ Filter.prototype.construct = function(params){
 
     return this;
 
-}
+} 
 
 Filter.prototype.setInputs = function( inputs ) {
 
@@ -78,10 +83,26 @@ Filter.prototype.get = function(array, val, fct ) {
     array.forEach( (el, index)=> {
         let obj = new fct();
 
-        if(!document.querySelector(`[name="${el.name}"]`)){
-            delete array[index];
-            return
+        if(val === "range" && el.multiple){
+            if(!document.querySelector(`[name="${el.min.name}"]`) && !document.querySelector(`[name="${el.max.name}"]`)){
+                delete array[index];
+                return
+            }
         }
+        else if (val === "range" && !el.multiple && !el.name){
+            if(!document.querySelector(`[name="${el.min.name}"]`) ){
+                delete array[index];
+                return
+            }
+        }
+        else{
+            if(!document.querySelector(`[name="${el.name}"]`)){
+                delete array[index];
+                return
+            }
+        }
+        
+       
         const els = el.url_name ? el.url_name : el.name;
 
         if(this.url && location.hash && this.url.params[els] ){
@@ -97,8 +118,9 @@ Filter.prototype.get = function(array, val, fct ) {
 
         }
 
-        this.inputs[val].push( setArray( obj, el ) )
+        if(val === "range") this.inputs[val].push( setArrayRange( obj, el, this.formObj ) )
+        else this.inputs[val].push( setArray( obj, el ) )
 
-        if(el.value) obj.create(this);
+        if(el.value) obj.create(this, el.value);
     })
 }

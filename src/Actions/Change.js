@@ -17,7 +17,7 @@ onChange.prototype.bindEvent = function(){
   this.el.formObj.addEventListener("keydown", e => {
     if (e.keyCode === 13) e.preventDefault();
   })
-  const events = ['click', 'change', 'keyup']
+  const events = ['click', 'change', 'keyup', 'input']
   events.forEach( event => {
     this.el.formObj.addEventListener(event, e => {
       if (e.keyCode === 13) return;
@@ -79,6 +79,15 @@ onChange.prototype.update = function(e){
           })
         }
         break;
+        case "range" : {
+          if(!this.el.inputs.range) error( ' No range setted ');
+          this.el.inputs.range.forEach( range => {
+            if( !range.multiple && isTarget(e, range) ||  !range.multiple && isTarget(e, range.min)|| range.multiple && isTarget(e, range.min) || range.multiple && isTarget(e, range.max) ){
+              range.update(this)
+              if(this.el.url) this.el.url.constructRange( range )
+            }
+          })
+        }
     }
   }
 }
@@ -87,7 +96,7 @@ onChange.prototype.update = function(e){
 onChange.prototype.get = function(array, data) {
   let validation = [];
   array.forEach( el => {
-      validation.push(el.validate(data));
+    validation.push(el.validate(data));
   })
 
   return validation;
@@ -95,7 +104,7 @@ onChange.prototype.get = function(array, data) {
 
 
 onChange.prototype.filter = function(){
-  let inputs = this.filterByKey("search" );
+  let inputs = this.filterByKey("search");
   let datas  = this.el.datas
 
   if( this.el.inputs.search ) this.el.inputs.search.forEach( s => { datas = s.validate(  this.el.datas ) } );
@@ -104,13 +113,14 @@ onChange.prototype.filter = function(){
     let compare = [];
     for (const key in inputs) {
       compare = [...compare, ...this.get(inputs[key], data)];
-
     }
 
 
     let result = compare.filter( t => t );
+    
     data.hide = datas && datas.indexOf(data) === -1 ? true : false;
 
+    
     if (!data.hide) data.hide = compare.length === result.length  ? false : true;
 
     data.hide ? data.abc_selector.classList.add( "abc-hide" ) : data.abc_selector.classList.remove( "abc-hide" )
@@ -118,8 +128,8 @@ onChange.prototype.filter = function(){
     // data.abc_selector.style.display = data.hide ?  "none" : "block"
     if(!data.hide) return data
   });
-
-  if(this.el.nb_results && this.el.nb_results.target) this.results(nbs.length);
+  
+  if(this.el.get_nbResult) this.el.get_nbResult.update( datas.length );
 }
 
 onChange.prototype.filterByKey = function(value) {
@@ -129,16 +139,3 @@ onChange.prototype.filterByKey = function(value) {
  return array;
 }
 
-onChange.prototype.results = function(nb){
-  let result = this.el.nb_results, setText = "plural";
-  const target = document.querySelector(this.el.nb_results.target);
-  if(!target) {
-     error( ' No Result target found ')
-     return;
- }
-
-  if (nb === 0) setText = "no_results"
-  else if (nb === 1) setText = "singular"
-
-  target.innerHTML = result[setText].replace('-var-', nb);
-}

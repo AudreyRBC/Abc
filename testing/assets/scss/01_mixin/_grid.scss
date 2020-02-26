@@ -1,0 +1,259 @@
+
+//----Content style----//
+%grid--lg {
+  // max-width: $max-width-xl;
+  margin: 0 auto;
+}
+
+%grid {
+  width     : 100%;
+  // max-width : $max-width-s;
+
+  margin    : 0 auto;
+
+  list-style: none;
+
+  // @media screen and (min-width:1024px) {
+  //   max-width: $max-width-m;
+  // }
+  // @media screen and (min-width:1151px) {
+  //   max-width: $max-width-xl;
+  // }
+
+  //--- grid supported ---//
+  @supports (display:grid) {
+    display              : grid;
+
+    grid-template-columns: repeat($nbCol-s, 1fr);
+    grid-column-gap      : $gap-s;
+    grid-row-gap         : $row-s;
+    // grid-template-rows: repeat($row-s);
+    @media screen and (min-width:800px) {
+      grid-template-columns: repeat($nbCol-m, 1fr);
+      grid-column-gap      : $gap-m;
+      grid-row-gap         : $row-m;
+    }
+    @media screen and (min-width:1024px) {
+      grid-template-columns: repeat($nbCol-xl, 1fr);
+      grid-column-gap      : $gap-xl;
+      grid-row-gap         : $row-xl;
+    }
+
+  }
+
+  //--- grid not supported ---//
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    display  : flex;
+    flex-wrap: wrap;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+%grid--full {
+  width     : 100%;
+  padding   : 25px;
+
+  list-style: none;
+
+  @media screen and (min-width:1151px) {
+    padding: 0;
+  }
+
+  //--- grid supported ---//
+  @supports (display:grid) {
+    display              : grid;
+
+    grid-template-columns: repeat($nbCol-s, 1fr);
+    grid-column-gap      : $gap-s;
+    grid-row-gap         : $row-s;
+    // grid-template-rows: repeat($row-s);
+    @media screen and (min-width:1024px) {
+      grid-template-columns: repeat($nbCol-m, 1fr);
+      grid-column-gap      : $gap-m;
+      grid-column-row      : $row-m;
+      // grid-template-rows: repeat($row-xl);
+      // grid-row-gap: $gap-xl;
+    }
+    @media screen and (min-width:1151px) {
+      grid-template-columns: repeat($nbCol-xl, 1fr);
+      grid-column-gap      : $gap-xl;
+      grid-column-row      : $row-xl;
+      // grid-template-rows: repeat($row-xl);
+      // grid-row-gap: $gap-xl;
+    }
+
+  }
+
+  //--- grid not supported ---//
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    display        : flex;
+    flex-wrap      : wrap;
+    justify-content: space-between;
+
+    @media screen and (min-width:1151px) {
+      display        : flex;
+      flex-wrap      : wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+.grid {
+  @extend %grid;
+}
+
+.grid--full {
+  @extend %grid--full;
+}
+
+.grid--lg {
+  @extend %grid--lg;
+}
+
+@mixin set-out($nbCol) {
+  width: calc(#{($max-width-xl / $nbCol-xl) * $nbCol - ($gap-xl / 2)} + (100vw - #{$max-width-xl}) / 2);
+  //--- grid not supported ---//
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @media screen and (min-width:1151px) {
+      position: absolute;
+      top     : 0;
+      right   : 0;
+    }
+  }
+}
+
+@mixin set-col($bp, $nbCol, $start: auto) {
+
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    // Responsive Grid
+    $nbColumn: $nbCol-xl / $nbCol;
+
+    @include media-min($bp) {
+      @if ($nbCol == $nbCol-xl) {
+        width: 100%;
+      }
+      @elseif ($start != auto) {
+        width            : calc((100% - (#{$nbColumn - 1} * #{$gap-xl})) / #{$nbColumn});
+        margin-right     : #{$gap-xl};
+        grid-column-start: $start;
+      } @else {
+        width: calc((100% - (#{$nbColumn - 1} * #{$gap-xl})) / #{$nbColumn});
+
+        &:nth-child(1n + 1) {
+          margin-right: #{$gap-xl};
+        }
+
+        &:nth-child(#{$nbColumn}n + #{$nbColumn}) {
+          margin-right: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+  }
+
+  @supports (display: grid) {
+    // Responsive Grid
+    @if ($bp) {
+
+      @include media-min($bp) {
+        @if ($nbCol == $nbCol-xl) {
+          grid-column: 1 / -1;
+        }
+        @elseif ($start != auto) {
+          grid-column      : auto / span #{$nbCol};
+          grid-column-start: $start;
+        } @else {
+          grid-column: auto / span #{$nbCol};
+        }
+      }
+
+    }
+  }
+}
+
+@mixin set-row($bp, $start) {
+  @include media-min($bp) {
+    grid-row-start: $start;
+  }
+}
+
+@mixin set-wCol($nbColumn) {
+  max-width: 100%;
+  @media screen and (min-width:1200px) {
+    max-width: $max-width-xl;
+  }
+  @supports (display: grid) {
+    $nbColumn: $nbCol-xl / $nbColumn;
+    width    : calc((100vw - (#{$nbColumn - 1} * #{$gap-xl})) / #{$nbColumn});
+  }
+}
+
+@each $bp in $breakpoints {
+  $key: nth($bp, 1);
+  @for $i from 1 through $nbCol-xl {
+    $nbColumn: $nbCol-xl / $i;
+
+    @if $key == "s" or $key == "xs" or $key == "sm" {
+      $nbColumn: $nbCol-s / $i;
+    }
+
+    //responsive column
+    .c#{$key}--#{$i} {
+      @include set-col($key, $i);
+    }
+
+    //row
+    .r#{$key}--#{$i} {
+      @include media-min($key) {
+        grid-row: auto / span #{$i};
+      }
+    }
+
+    //order
+    .o#{$key}--#{$i} {
+      @include media-min($key) {
+        order: #{$i};
+      }
+    }
+
+  }
+}
+
+.grid-template {
+  @extend %grid;
+  position        : fixed;
+  top             : 0;
+  left            : 50%;
+
+  height          : 100%;
+
+  z-index         : 10000;
+  transform       : scaleY(0) translateX(-50%);
+  transform-origin: top;
+  transition      : transform .4s ease;
+
+  pointer-events  : none;
+  @include maxPad(45);
+
+  &--active {
+    transform: scaleY(1) translateX(-50%);
+  }
+  @for $i from 1 through $nbCol-xl {
+    span {
+      background: rgba(pink, .4);
+      display   : block;
+      @include set-col(lg, 1);
+    }
+  }
+}

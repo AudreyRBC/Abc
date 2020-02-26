@@ -1,0 +1,38 @@
+//----Normalize for all----//
+
+* {
+  //init margin and padding
+  padding                : 0;
+  margin                 : 0;
+
+  //adding padding no change de flux
+  box-sizing             : border-box;
+
+  //remove btns & inputs default style
+  -webkit-appearence     : none;
+  -webkit-apparence      : none;
+
+  border-radius          : none;
+  border                 : none;
+
+  background             : transparent;
+
+  //Beautify fonts
+  -webkit-font-smoothing : antialiased;
+  font-smoothing         : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  //remove tag a default style
+  outline                : none;
+  text-decoration        : none;
+}
+html{
+  overflow: hidden;
+}
+body,
+html {
+  width   : 100vw;
+  height  : 100vh;
+  
+
+}

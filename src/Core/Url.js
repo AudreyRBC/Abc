@@ -1,8 +1,3 @@
-var Checkbox = require( '../Inputs/Checkbox' );
-var Radio = require( '../Inputs/Radio' );
-var Select = require( '../Inputs/Select' );
-var Search = require( '../Inputs/Search' );
-
 module.exports = () => { return new Url() }
 function Url(){
   this.search = new URLSearchParams();
@@ -11,11 +6,28 @@ function Url(){
 
 Url.prototype.construct = function(label){
   let name = label.url_name ? label.url_name : label.name
+
   let value = label.names && label.id && label.names[0] != "" ? label.names : label.value
   value = encodeURIComponent(value)
+  
   if (value.length !== 0 && this.search) this.search.set(name, value);
   if (value.length === 0 && this.search || value.length === 1 && value[0] === "" && this.search) this.search.delete(name);
+
 }
+
+Url.prototype.constructRange = function(label){
+  let name = label.url_name ? label.url_name : label.name
+  
+  let minValue = label.min.value
+  let maxValue = label.max.value
+
+  let value = minValue && maxValue ? `${minValue}-${maxValue}` : minValue
+
+  if (minValue !== label.min.min || maxValue !== label.max.max && this.search) this.search.set(name, value);
+  if (minValue === label.min.min && this.search && !label.multiple || minValue === label.min.min && maxValue === label.max.max && this.search && label.multiple) this.search.delete(name);
+
+}
+
 Url.prototype.disconstruct = function() {
   const params = [];
   const hash = location.hash.replace('#', '');
@@ -28,3 +40,4 @@ Url.prototype.disconstruct = function() {
   })
   return params;
 }
+

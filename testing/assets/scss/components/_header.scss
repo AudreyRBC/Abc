@@ -1,0 +1,24 @@
+.topbar {
+  position       : fixed;
+  top            : 15px;
+  left           : 0;
+
+  z-index: 10;
+
+  width          : 100vw;
+  height         : 30px;
+  padding        : 0 60px;
+
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  a{
+    transform: translateY(100%);
+  }
+  @include media-max(sm) {
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,93 @@
+h1{
+  font-family: $tertiary;
+  font-weight: 300;
+  @include rem-size(40);
+}
+
+h2{
+  font-family: $secondary;
+  font-weight: 700;
+  @include rem-size(32);
+}
+
+h3{
+  font-family: $secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+  @include rem-size(24);
+}
+
+h4{
+  font-family: $secondary;
+  font-weight: 400;
+  @include rem-size(18);
+  text-transform: uppercase;
+}
+p {
+  font-family: $secondary;
+  font-weight: 300;
+  @include rem-size(16);
+}
+
+.link {
+  color      : $black;
+  font-family: $primary;
+  font-weight: 300;
+
+  &--big{
+    display: inline-block;
+    color: $white;;
+    font-family: $secondary;
+    @include rem-size(30);
+
+    margin-top: 20px;
+    &:after{
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        background: $white;
+        transform: translateY(-30px);
+    }
+  }
+}
+
+.walk {
+  @include rem-size(160); 
+  line-height: 130px;
+  transform: translateY(433px);
+  transform-origin: top left;
+}
+
+.with {
+  @include rem-size(180); 
+  line-height: 130px;
+  transform: translateY(433px);
+  transform-origin: top left;
+}
+
+.me {
+  @include rem-size(309.5); 
+  line-height: 99px;
+  height: 173px;
+  transform: translateY(433px);
+  transform-origin: top left;
+}
+
+.name {
+  @include rem-size(100); 
+  line-height: 75px;
+  transform: translateX(100%);
+  transform-origin: top left;
+  letter-spacing: 6px;
+
+  position                         : absolute;
+  left                             : 0;
+  bottom                           : 0;
+}
+
+// TEMP
+.line {
+  display: block;
+  overflow: hidden;
+}

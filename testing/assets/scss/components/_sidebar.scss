@@ -1,0 +1,38 @@
+.abc-sidebar{
+
+    display: none;;
+    position: fixed;
+    top: 0; left: 0;
+
+    width: 400px; height: 100vh;
+
+    border-right: 1px solid $lightpurple;
+
+    padding: 25px;
+
+    fieldset + fieldset{
+        margin-top: 30px;
+    }
+
+    h3{
+        margin-bottom: 10px;
+    }
+
+    form > fieldset{
+        background: $purple;
+
+        padding: 25px;;
+
+        *{
+            color: $white;;
+        }
+    }
+}
+
+
+.abc-hide{
+    display: none;
+}
+.abc-show{
+    display: block;
+}

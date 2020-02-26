@@ -1,25 +1,40 @@
 var {Fetch} = require( '../Helpers/Fetch' )
+var { inArray }  = require ('../Helpers/Array' );
 
 var onChange = require ( '../Actions/Change' )
 var onClick = require ( '../Actions/Click' )
 var onRedirect = require ( '../Actions/Redirect' )
 
-var Url = require ( '../Core/Url' );
+var Url = require ( './Url' );
+
+var Template = require ( '../Options/Template' );
+var NumberResults = require ( '../Options/NumberResults' );
+
+
+
 module.exports = () => { return new Datas() }
 
-function Datas(){};
+function Datas(){
+  this.extract = '';
+  this.container = '';
+  this.datas = []
+};
 
-Datas.prototype.get = function( el ){
+Datas.prototype.get = function(el) {
   return Fetch(el.options.url, (error, success) => {
       if(error) console.log(error);
       else {
 
-        el.datas = success;
-        el.datas = el.datas.filter( d => {
-          d.hide = false;
-          d.abc_selector = document.querySelector("#"+d[el.results.id])
-          if(d.abc_selector) return d;
-        });
+        this.datas = success;
+        this.results = el.results
+        
+        if( el.results.path ) this.datas = inArray(this.datas, el.results.path);
+        if( el.results.template ) this.container = document.querySelector(el.results.container)
+       
+          
+        el.datas = this.filtered()
+
+        if( el.nb_results && el.nb_results.target) el.get_nbResult = new NumberResults(el.nb_results, el.datas.length)
 
         console.info("ABC Ready")
         if(el.debug) {
@@ -28,19 +43,39 @@ Datas.prototype.get = function( el ){
         }
         // if(el.options.create_url === true) el.options.url_settings = new Url();
 
-        let action;
-        switch (el.form.action) {
-          case 'change':
-            action = new onChange( el );
-            break;
-          case 'submit':
-            action = new onClick(el);
-            break;
-          case 'redirect':
-            action = new onRedirect(el);
-            break;
-        }
+        this.actions(el)
 
       }
   })
+}
+
+Datas.prototype.filtered = function() {
+  return this.datas.filter( d => {
+    //Status
+    d.hide = false;
+
+
+    if( this.container ) d.template = new Template(this.results, d, this.container)
+    
+    //stock DOM element
+    d.abc_selector = document.querySelector(`#${this.results.prefix}${d[this.results.id]}`)
+
+    if(d.abc_selector) return d;
+  });
+
+}
+
+Datas.prototype.actions = (el) => {
+  let action;
+  switch (el.form.action) {
+    case 'change':
+      action = new onChange( el );
+      break;
+    case 'submit':
+      action = new onClick(el);
+      break;
+    case 'redirect':
+      action = new onRedirect(el);
+      break;
+  }
 }

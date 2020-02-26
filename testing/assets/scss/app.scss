@@ -1,0 +1,44 @@
+//-----------------------------------------//
+//-----------------------------------------//
+//-----------------STARTER-----------------//
+//-----------------------------------------//
+$nbCol-xl    : 16 !default;
+$gap-xl      : 20px !default;
+$max-width-xl: 1340px !default;
+$row-xl      : 60px !default;
+
+$nbCol-m     : 8 !default;
+$gap-m       : 0 !default;
+$max-width-m : 100vw !default;
+$row-m       : 30px !default;
+
+//--S
+$nbCol-s     : 4 !default;
+$gap-s       : 0 !default;
+$max-width-s : 100vw !default;
+$row-s       : 30px !default;
+
+$max-padding : $max-width-xl + 90;
+$marginGap   : ((#{100vw} - #{100%}));
+
+//-----------------------------------------//
+//-----------------------------------------//
+//-----------------STARTER-----------------//
+//-----------------------------------------//
+
+//----00_Rules----//
+@import "00_rules/normalize";
+
+//----01_Mixins----//
+@import "01_mixin/breakpoints";
+@import "01_mixin/font-face";
+@import "01_mixin/grid";
+@import "01_mixin/gradient";
+@import "01_mixin/rem-size";
+
+@import "components/colors";
+@import "components/fonts";
+@import "components/header";
+@import "components/richtext";
+@import "components/footer";
+@import "components/sidebar";

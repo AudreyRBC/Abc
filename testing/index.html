@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abc Filter</title>
+    <link rel="stylesheet" href="./dist/css/abc_testing.min.css">
+</head>
+<body>
+    <header>  
+        <a href="index.html">Abc Filter</a>
+    </header>
+    <main>
+        <section class="abc-sidebar">
+            <h1>Wanna test?</h1>
+            <!-- <p>json : <a href="https://api.jcdecaux.com/vls/v1/stations?apiKey=6d5071ed0d0b3b68462ad73df43fd9e5479b03d6&contract=Bruxelles-Capitale">Villo Stations </a></p> -->
+            <form>
+                <h2>Settings</h2>
+                <fieldset>
+                    <h3>Url</h3>
+                    <div>
+                        <input id="create_url" name="create_url" type="checkbox" checked>
+                        <label for="create_url">Dynamic url</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <!-- Search options -->
+                    <h3>Action mode</h3>
+                    <!-- Change mode -->
+                    <div>
+                        <input type="radio" id="change" name="action" value="change" checked>
+                        <label for="change">On change</label>
+                    </div>
+                    <!-- Submit mode -->
+                    <div>
+                        <input type="radio" id="submit" name="action" value="submit">
+                        <label for="submit">On submit</label>
+                    </div>
+                    <!-- Redirect mode -->
+                    <div>
+                        <input type="radio" id="redirect" name="action" value="redirect">
+                        <label for="redirect">On redirect</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <h3>Inputs</h3>
+                    <fieldset>
+                        <h4>Search</h4>
+                        <div>
+                            <input id="enable_search" name="enable_search" type="checkbox" checked>
+                            <label for="enable_search">Enable</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Select</h4>
+                        <div>
+                            <input id="enable_select" name="enable_select" type="checkbox" checked>
+                            <label for="enable_select">Enable select</label>
+                        </div>
+                        <div>
+                            <input id="enable_multiselect" name="enable_multiselect" type="checkbox" checked>
+                            <label for="enable_multiselect">Enable multi select</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Checkbox</h4>
+                        <div>
+                            <input id="enable_checkbox" name="enable_checkbox" type="checkbox" checked>
+                            <label for="enable_checkbox">Enable checkbox group</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Radio</h4>
+                        <div>
+                            <input id="enable_radio" name="enable_radio" type="checkbox" checked>
+                            <label for="enable_radio">Enable radio group</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Range</h4>
+                        <div>
+                            <input id="enable_range" name="enable_range" type="checkbox" checked>
+                            <label for="enable_range">Enable range</label>
+                        </div>
+                        <div>
+                            <input id="enable_multirange" name="enable_multirange" type="checkbox" checked>
+                            <label for="enable_multirange">Enable multi range</label>
+                        </div>
+                    </fieldset>
+                </fieldset>
+            </form>
+        </section>  
+        <section class="abc-filter">
+            <form>
+                <input name="m_range_min" value="0" type="range" min="0" max="300">
+                <input name="m_range_max" value="300" type="range" min="0" max="300">
+            </form>
+        </section>
+        <strong class="abc-nbresults"></strong>
+        <article class="abc-results">
+           
+        </article>
+    </main>
+    <script src="../build/abc.js"></script>
+    <script src="dist/js/abc_testing.min.js"></script>
+</body>
+</html>

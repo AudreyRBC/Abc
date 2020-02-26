@@ -1,0 +1,71 @@
+//----Responsive breakpoints----//
+$breakpoints: (
+  s     : 0,
+  xs    : 600px,
+  sm    : 800px,
+  md    : 980px,
+  lg    : 1024px,
+  xl    : 1250px,
+  xxl   : 1350px,
+  full  : 1600px,
+  maxpad: $max-padding
+)
+!default;
+
+//----Minimum size----//
+
+@mixin media-min($bp) {
+
+  $value: $bp;
+  @if map-has-key($breakpoints, $bp) {
+    $value: map-get($breakpoints, $bp);
+  }
+
+  @media screen and (min-width: $value) {
+    @content;
+  }
+
+}
+
+//----Maximum size----//
+@mixin media-max($bp) {
+
+  $value: $bp;
+  @if map-has-key($breakpoints, $bp) {
+    $value: map-get($breakpoints, $bp);
+  }
+
+  @media screen and (max-width: $value - 1) {
+    @content;
+  }
+}
+
+//----Between minimum size & maximum size----//
+@mixin media-minmax($min, $max) {
+  $valueMin: $min;
+  @if map-has-key($breakpoints, $min) {
+    $valueMin: map-get($breakpoints, $min);
+  }
+
+  $valueMax: $max;
+  @if map-has-key($breakpoints, $max) {
+    $valueMax: map-get($breakpoints, $max);
+  }
+
+  @media screen and (min-width: $valueMin) and (max-width: $valueMax - 1) {
+    @content;
+  }
+}
+@mixin maxPad($padding) {
+
+  @include media-max(maxpad) {
+    padding-left : $padding + 0px;
+    padding-right: $padding + 0px;
+    max-width    : 100%;
+  }
+  @include media-max(xs) {
+    padding-left : 25px;
+    padding-right: 25px;
+  }
+  @content;
+}
