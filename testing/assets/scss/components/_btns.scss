@@ -3,6 +3,37 @@
     color: $white;
     padding: 20px;
     cursor: pointer;
-    text-transform: uppercase;
+
     font-weight: 600;
+
+    font-family: $secondary;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+
+    &--settings{
+        width: 100%;
+
+        padding: 15px 20px 15px 25px ;
+        background: $purple;
+        border-radius: 100px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        &:hover{
+            background: darken($purple, 10);
+        }
+        &:after{
+            content: '';
+
+            width: 20px; 
+            height: 20px;
+
+            background: $white;
+            border-radius: 50%;;
+        }
+    }
 }

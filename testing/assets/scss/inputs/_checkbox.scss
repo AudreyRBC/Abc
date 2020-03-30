@@ -1,0 +1,43 @@
+input[type="checkbox"]{
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="checkbox"] ~ label{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+   
+
+    cursor: pointer;
+    &::before, &::after{
+        content: '';
+
+        display: block;
+
+        width: 10px;
+        height: 10px;
+
+        border: 1px solid $purple;
+       
+    }
+    &::before{
+        margin-right: 5px;
+    }
+
+    &:after{
+        position: absolute;
+        top: 50%;
+        left: 0;
+
+        background: $purple;
+        transform: translateY(-50%) scale(0);
+
+        transition: transform .3s ease;
+    }
+}
+input[type="checkbox"]:checked ~ label::after{
+    transform: translateY(-50%) scale(1);
+}

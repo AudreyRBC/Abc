@@ -1,0 +1,16 @@
+fieldset + fieldset{
+    margin-top: 20px;
+}
+
+label{
+    font-family: $secondary;
+    @include rem-size(18);
+    color: $black;
+}
+legend{
+    font-family: $secondary;
+    @include rem-size(18);
+    color: $black;
+    font-weight: 600;
+    margin-bottom: 15px;
+}

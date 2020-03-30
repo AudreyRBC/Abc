@@ -1,4 +1,4 @@
-var { inArray }  = require ('../Helpers/Array' );
+var { inArray }  = require ('../../Helpers/Array' );
 
 module.exports = () => { return new Range() }
 
@@ -7,14 +7,12 @@ function Range(){
     this.compare = false
     this.url_name= false
     this.min = {
-        text:   false,
         default: false,
         value: false,
         name: false,
         min: false
     }
     this.max = {
-        text:    false,
         default: false,
         value: false,
         name: false,
@@ -33,7 +31,7 @@ Range.prototype.validate = function (data){
     if(this.multiple) {
         const isMin = this.validateMin( data );
         const isMax = this.validateMax( data );
-
+        
         return isMin && isMax
     }
 }
@@ -52,31 +50,28 @@ Range.prototype.update = function(options){
         const inputMin = options.el.formObj.querySelector(`[name="${this.min.name}"]`)
         const inputMax = options.el.formObj.querySelector(`[name="${this.max.name}"]`)
 
-        const isMin = this.updateMin( inputMin );
-        const isMax = this.updateMax( inputMax );
-
-        isValidated = isMin && isMax
+        this.updateMin( inputMin );
+        this.updateMax( inputMax );
     }
+
     
-    return isValidated
 }
 
 Range.prototype.updateMin = function ( input ){
-    input.setAttribute('value', input.value)
     this.min.value = input.value
 }
 Range.prototype.updateMax = function ( input ){
-    input.setAttribute('value', input.value)
     this.max.value = input.value
 }
 
 Range.prototype.validateMin = function ( data ){
     let isValidated = inArray(data, this.compare, this.min.value);
-    return isValidated >= this.min.value;
+    return Number(isValidated) >= Number(this.min.value);
 }
 Range.prototype.validateMax = function ( data ){
     let isValidated = inArray(data, this.compare, this.max.value);
-    return isValidated <= this.max.value;
+
+    return Number(isValidated) <= Number(this.max.value);
 }
 
 Range.prototype.create = function(options, values){

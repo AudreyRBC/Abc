@@ -1,4 +1,4 @@
-var { inArray }  = require ('../Helpers/Array' );
+var { inArray }  = require ('../../Helpers/Array' );
 module.exports = () => { return new Checkbox() }
 function Checkbox(d){
     this.name       = false
@@ -6,7 +6,7 @@ function Checkbox(d){
     this.url_name   = false
     this.operator   = "or"
     this.value      = []
-    this.id         = true
+    this.id         = false
 }
 
 Checkbox.prototype.validate = function(data){
@@ -14,22 +14,22 @@ Checkbox.prototype.validate = function(data){
     data.inputs = [];
     if (this.value.length === 0) return true;
 
-        if (typeof this.compare === "object") {
-            toValidate = [];
+    if (typeof this.compare === "object") {
+        toValidate = [];
 
-            this.compare.forEach( compare => {
-                toValidate.push(inArray(data, compare, this.value));
-            })
-            return this.multiCompare(data, toValidate, this.value)
-        }else{
-            return this.singleCompare(data, this.value, this.compare)
-        }
-    // }
+        this.compare.forEach( compare => {
+            toValidate.push(inArray(data, compare, this.value));
+        })
+        return this.multiCompare(data, toValidate, this.value)
+    }else{
+        return this.singleCompare(data, this.value, this.compare)
+    }
 
 }
 
 Checkbox.prototype.multiCompare = function( data, toValidate, value ){
-
+    
+    
     if ( toValidate ) {
         if (toValidate[0] !== "" && toValidate[1] !== "") {
             isValidated = value >= toValidate[0] && value <= toValidate[1]
@@ -48,7 +48,7 @@ Checkbox.prototype.multiCompare = function( data, toValidate, value ){
 }
 
 Checkbox.prototype.singleCompare = function( data, value, compare ){
-
+   
     let isValidated = inArray(data, compare, value);
 
     if( isValidated ) {
@@ -87,7 +87,7 @@ Checkbox.prototype.update = function(options){
 
         // Insert value in instance
         this.value = [...checked].map( input => input.value )
-        this.names = [...checked].map( input => input.getAttribute('id') ? input.getAttribute('id') : input.value );
+        this.names = [...checked].map( input => input.getAttribute('id') && this.id ? input.getAttribute('id') : input.value );
 }
 
 Checkbox.prototype.create = function(options){
@@ -95,7 +95,14 @@ Checkbox.prototype.create = function(options){
     const inputs = options.formObj.querySelectorAll(`[name="${this.name}"]`)
 
     const checked = [...inputs].forEach( input => {
-        const attr = input.value ;
-        this.value.indexOf(input.value) > -1 ? input.checked = true : input.checked = false;
+        const attr = input.getAttribute('id') && this.id ? input.getAttribute('id') : input.value ;
+
+        if(this.value.indexOf(input.value) > -1){
+            input.setAttribute('checked', 'checked')
+            input.checked = true
+        }else{
+            input.checked = false;
+            input.removeAttribute("checked")
+        } 
     });
 }

@@ -1,35 +1,56 @@
-var { inArray }  = require ('../Helpers/Array' );
+var { inArray }  = require ('../../Helpers/Array' );
 module.exports = () => { return new Radio() }
 function Radio(){
   this.name    = false 
   this.compare = false
   this.url_name= false
-  this.relation= "and"
+  this.operator= "or"
   this.value   = []
-  this.id      = true
+  this.id      = false
 }
 
 
+// Radio.prototype.validate = function(data){
+//     let toValidate;
+//     data.inputs = [];
+
+//     if (this.value.length === 0) return true;
+//       let comp = this.compare, operator = this.operator;
+//       if (this.target && this.compare[this.target] ){
+//         comp = this.compare[this.target].compare
+//         operator  = this.compare[this.target].operator
+//       }
+      
+//         if (typeof comp === "object") {
+         
+//             toValidate = [];
+//             comp.forEach( compare => {
+//                 toValidate.push(inArray(data, compare, this.value));
+//             })
+//             return this.multiCompare(data, toValidate, this.value)
+
+//         }else{
+//             return this.singleCompare(data, this.value, comp, operator)
+//         }
+
+// }
 Radio.prototype.validate = function(data){
-    let toValidate;
-    data.inputs = [];
+    if (this.value.length === 0 || this.value.length === 1 && this.value[0] === "") return true;
 
-    if (this.value.length === 0) return true;
-      let comp = this.compare, operator = this.operator;
-      if (this.target && this.compare[this.target] ){
-        comp = this.compare[this.target].compare
-        operator  = this.compare[this.target].operator
-      }
-        if (typeof comp === "object") {
-            toValidate = [];
-            comp.forEach( compare => {
-                toValidate.push(inArray(data, compare, this.value));
-            })
-            return this.multiCompare(data, toValidate, this.value)
+    let isValidated = inArray(data, this.compare, this.value);
 
-        }else{
-            return this.singleCompare(data, this.value, comp, operator)
-        }
+    
+    isValidated = typeof isValidated != 'object' ? [isValidated] : isValidated
+    if( isValidated ) {
+
+        isValidated = isValidated.filter( v => this.value.indexOf( String(v) ) > -1);
+        isValidated = [...new Set(isValidated)];
+
+        isValidated = this.operator !== "and" ?  isValidated.length > 0 : isValidated.length === this.value.length ;
+
+        return isValidated;
+
+    } else return false;
 
 }
 
@@ -53,13 +74,13 @@ Radio.prototype.multiCompare = function( data, toValidate, value ){
 }
 
 Radio.prototype.singleCompare = function( data, value, compare, operator ){
-
+    
+    // if(!compare) return
     let isValidated = inArray(data, compare, value);
-
+    
     if( isValidated ) {
 
         isValidated = typeof isValidated != 'object' ? [isValidated] : isValidated
-
         if (operator === "and") {
             isValidated = isValidated.length === value.length ;
             isValidated = isValidated.filter( v => value.indexOf( String(v) ) > -1);
@@ -94,23 +115,21 @@ Radio.prototype.update = function(options){
 
     // Insert value in instance
     this.value = [...checked].map( input => input.value )
-    this.names = [...checked].map( input => input.getAttribute('id') ? input.getAttribute('id') : input.value );
+    this.names = [...checked].map( input => input.getAttribute('id') && this.id ? input.getAttribute('id') : input.value );
 }
-
-
 Radio.prototype.create = function(options){
+
     const inputs = options.formObj.querySelectorAll(`[name="${this.name}"]`)
 
     const checked = [...inputs].forEach( input => {
-
         const attr = input.getAttribute('id') && this.id ? input.getAttribute('id') : input.value ;
-        console.log(attr);
-        if( this.value.indexOf(attr) > -1 ) {
-          input.setAttribute('checked', 'checked')
-          input.checked = true
-         }
-          else {
+
+        if(this.value.indexOf(input.value) > -1){
+            input.setAttribute('checked', 'checked')
+            input.checked = true
+        }else{
             input.checked = false;
-          }
+            input.removeAttribute("checked")
+        } 
     });
 }

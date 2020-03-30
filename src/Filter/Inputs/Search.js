@@ -15,7 +15,7 @@ Search.prototype.validate = function(datas){
     const compare = typeof this.compare === "string" ? [this.compare] : this.compare
     const value = typeof this.value === "object" ? this.value[0] : this.value
 
-    var options = {
+    var options = { 
       threshold: 0.4,
       keys: compare,
       distance: 10000,

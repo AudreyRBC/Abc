@@ -1,4 +1,4 @@
-var { createElementFromHTML }  = require ('../Helpers/String' );
+var { createElementFromHTML }  = require ('../../Helpers/String' );
 
 module.exports = (results, d, container) => { return new Template(results, d, container) }
 

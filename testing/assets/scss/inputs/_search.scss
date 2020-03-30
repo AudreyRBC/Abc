@@ -1,0 +1,18 @@
+input[type="search"]{
+    width: 100%;
+
+    background: $white;
+    border: 1px solid rgba($purple,0.12);
+
+    font-family: $secondary;
+    @include rem-size(18);
+    color: $black;
+
+    padding:20px;
+
+    &::placeholder{
+        font-family: $secondary;
+        @include rem-size(18);
+        color: $black;
+    }
+}

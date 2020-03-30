@@ -22,5 +22,5 @@ NumberResults.prototype.update = function(length){
     this.length = length
     if(length > 1) this.getFn = 2
     else this.getFn = length
-    this.options[this.getFn](length)
+    this.target.innerHTML = this.options[this.getFn](length)
 }

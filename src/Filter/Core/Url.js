@@ -10,6 +10,7 @@ Url.prototype.construct = function(label){
   let value = label.names && label.id && label.names[0] != "" ? label.names : label.value
   value = encodeURIComponent(value)
   
+  
   if (value.length !== 0 && this.search) this.search.set(name, value);
   if (value.length === 0 && this.search || value.length === 1 && value[0] === "" && this.search) this.search.delete(name);
 

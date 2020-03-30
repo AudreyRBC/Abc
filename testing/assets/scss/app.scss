@@ -36,10 +36,21 @@ $marginGap   : ((#{100vw} - #{100%}));
 @import "01_mixin/gradient";
 @import "01_mixin/rem-size";
 
+
+//----Components----//
 @import "components/colors";
 @import "components/fonts";
 @import "components/header";
 @import "components/richtext";
 @import "components/footer";
+@import "components/filter";
 @import "components/sidebar";
+@import "components/results";
 @import "components/btns";
+
+//----Inputs----//
+@import "inputs/inputs";
+@import "inputs/search";
+@import "inputs/select";
+@import "inputs/checkbox";
+@import "inputs/range";

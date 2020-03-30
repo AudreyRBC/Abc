@@ -1,4 +1,4 @@
-var { inArray }  = require ('../Helpers/Array' );
+var { inArray }  = require ('../../Helpers/Array' );
 
 module.exports = () => { return new Select() }
 function Select(){
@@ -14,12 +14,11 @@ function Select(){
 
 
 Select.prototype.validate = function(data){
-    data.inputs = [];
-
     if (this.value.length === 0 || this.value.length === 1 && this.value[0] === "") return true;
 
     let isValidated = inArray(data, this.compare, this.value);
 
+    
     isValidated = typeof isValidated != 'object' ? [isValidated] : isValidated
     if( isValidated ) {
 
@@ -43,14 +42,16 @@ Select.prototype.update = function(options){
 
     // Insert value in instance
     this.value = [...checked].map( input => input.value )
-    this.names = [...checked].map( input => input.hasAttribute('id') ? input.getAttribute('id') : input.value );
+    this.names = [...checked].map( input => input.hasAttribute('id') && this.id ? input.getAttribute('id') : input.value );
 }
 
 Select.prototype.create = function(options){
     const select = options.formObj.querySelector(`[name="${this.name}"]`);
+
     const inputs = options.formObj.querySelectorAll(`[name="${this.name}"] option`)
+    
     const checked = [...inputs].filter( input => {
-        const attr = input.getAttribute('id') ? input.getAttribute('id') : input.value;
+        const attr = this.id === true && input.getAttribute('id') ? input.getAttribute('id') : input.value;
         if (this.value.indexOf(attr) > -1) {
             input.setAttribute('selected', 'selected')
             return input
@@ -59,7 +60,9 @@ Select.prototype.create = function(options){
     this.value = [...checked].map( input => input.value )
     this.names = [...checked].map( input => input.getAttribute('id') ? input.getAttribute('id') : input.value );
 
-    select.value = this.value.join('&')
+    select.selectedOptions = checked
+    
+    
     select.setAttribute('value', this.value.join('&'))
 
 }

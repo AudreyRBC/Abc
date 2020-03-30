@@ -57,3 +57,4 @@ export const inArray = (data, compare, val) => {
   return val
 
 }
+ 

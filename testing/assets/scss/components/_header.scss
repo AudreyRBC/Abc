@@ -7,7 +7,7 @@
 
   width          : 100vw;
   height         : 30px;
-  padding        : 0 60px;
+  padding        : 0 45px;
 
   display        : flex;
   align-items    : center;
@@ -16,9 +16,23 @@
   overflow: hidden;
 
   a{
-    transform: translateY(100%);
+    font-family: $primary;
+    @include rem-size(16)
+    color: $black;
+    letter-spacing: 0;
   }
-  @include media-max(sm) {
-    padding: 0 20px;
+}
+
+
+.topbar__navigation{
+ 
+
+  ul{
+    display: flex;
+    list-style: none;
+  }
+
+  li + li {
+    margin-left: 20px;
   }
 }
