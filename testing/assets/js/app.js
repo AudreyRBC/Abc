@@ -1,7 +1,8 @@
 import  "../scss/app.scss"
 
 // import {Filter, Select} from './../../../build/abc.js'
-import {Filter, Select, Range, AutoComplete} from './../../../build/abc'
+// import {Filter, Select, Range, AutoComplete} from './../../../build/abc'
+import {Filter} from 'abcfilter/abc' 
 
 // import ABCFilter from './../../../build/abcfilter'
 // console.log(ABCFilter);
