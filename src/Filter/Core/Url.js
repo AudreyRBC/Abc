@@ -25,7 +25,7 @@ Url.prototype.constructRange = function(label){
   let value = minValue && maxValue ? `${minValue}-${maxValue}` : minValue
 
   if (minValue !== label.min.min || maxValue !== label.max.max && this.search) this.search.set(name, value);
-  if (minValue === label.min.min && this.search && !label.multiple || minValue === label.min.min && maxValue === label.max.max && this.search && label.multiple) this.search.delete(name);
+  if (minValue === label.min.min && this.search && !label.multiple ||minValue === "" && maxValue === "" || minValue === label.min.min && maxValue === label.max.max && this.search && label.multiple) this.search.delete(name);
 
 }
 
