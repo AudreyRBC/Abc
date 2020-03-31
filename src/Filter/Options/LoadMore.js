@@ -28,6 +28,7 @@ LoadMore.prototype.init = function(el){
 }
 LoadMore.prototype.initClick = function(el){
     this.target = document.querySelector(this.target)
+    if(!this.target) return
     this.search = new URLSearchParams(el.options.url)
     this.target.addEventListener('click', e => {
         if(this.canUpdate) this.update(el);
@@ -35,6 +36,7 @@ LoadMore.prototype.initClick = function(el){
 }
 LoadMore.prototype.initScroll = function(el){
     this.target = document.querySelector(this.target)
+    if(!this.target) return
     this.search = new URLSearchParams(el.options.url)
 
     let observer;
@@ -85,8 +87,8 @@ LoadMore.prototype.Fetch = function(error, success, el){
             
             const newDatas = el.alldatas.filtered(this.datas, el)
             
-            
             el.datas = [...el.datas, ...newDatas]
+
 
             
             this.number = el.datas.length

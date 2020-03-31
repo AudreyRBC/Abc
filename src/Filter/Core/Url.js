@@ -18,14 +18,19 @@ Url.prototype.construct = function(label){
 
 Url.prototype.constructRange = function(label){
   let name = label.url_name ? label.url_name : label.name
-  
+  let value;
   let minValue = label.min.value
   let maxValue = label.max.value
+  
+  if(minValue === "" && maxValue != "") minValue = 0
+  
+  if(minValue && maxValue) value = `${minValue}-${maxValue}`
+  else if(minValue && !maxValue) value = minValue
+  else if(!minValue && maxValue) value = maxValue
 
-  let value = minValue && maxValue ? `${minValue}-${maxValue}` : minValue
-
+  
   if (minValue !== label.min.min || maxValue !== label.max.max && this.search) this.search.set(name, value);
-  if (minValue === label.min.min && this.search && !label.multiple ||minValue === "" && maxValue === "" || minValue === label.min.min && maxValue === label.max.max && this.search && label.multiple) this.search.delete(name);
+  if (minValue === label.min.min && this.search && !label.multiple || minValue === "" && maxValue === "" || minValue === label.min.min && maxValue === label.max.max && this.search && label.multiple) this.search.delete(name);
 
 }
 

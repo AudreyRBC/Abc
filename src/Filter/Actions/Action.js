@@ -14,7 +14,7 @@ Action.prototype.update = function(e){
           case "checkbox" : {
             if(!this.el.inputs.checkbox) error( ' No checkbox setted ');
             this.el.inputs.checkbox.forEach( checkbox => {
-              if( isTarget(e, checkbox) ) {
+              if( isTarget(e, checkbox) || e.target === this.el.form.targetEl) {
                 checkbox.update(this)
                 if(this.el.url) this.el.url.construct( checkbox )
               }
@@ -24,7 +24,7 @@ Action.prototype.update = function(e){
           case "radio" : {
             if(!this.el.inputs.radio) error( ' No radio setted ');
             this.el.inputs.radio.forEach( radio => {
-              if( isTarget(e, radio) ){
+              if( isTarget(e, radio) || e.target === this.el.form.targetEl){
                 radio.update(this)
                 if(this.el.url) this.el.url.construct( radio )
               }
@@ -34,7 +34,7 @@ Action.prototype.update = function(e){
           case "select" : {
             if(!this.el.inputs.select) error( ' No select setted ');
             this.el.inputs.select.forEach( select => {
-              if( isTargetSelected(e, select, this.el.formObj) ){
+              if( isTargetSelected(e, select, this.el.formObj)|| e.target === this.el.form.targetEl ){
                 select.update(this)
                 if(this.el.url) this.el.url.construct( select )
               }
@@ -45,7 +45,7 @@ Action.prototype.update = function(e){
             if(!this.el.inputs.search) error( ' No search setted ');
             this.el.inputs.search.forEach( search => {
   
-              if( isTarget(e, search) ){
+              if( isTarget(e, search)|| e.target === this.el.form.targetEl ){
                 search.update(this)
                 if(this.el.url) this.el.url.construct( search )
               }
@@ -55,7 +55,12 @@ Action.prototype.update = function(e){
           case "range" : {
             if(!this.el.inputs.range) error( ' No range setted ');
             this.el.inputs.range.forEach( range => {
-              if( !range.multiple && isTarget(e, range) ||  !range.multiple && isTarget(e, range.min)|| range.multiple && isTarget(e, range.min) || range.multiple && isTarget(e, range.max) ){
+              if( !range.multiple && isTarget(e, range) 
+                  ||  !range.multiple && isTarget(e, range.min)
+                  || range.multiple && isTarget(e, range.min) 
+                  || range.multiple && isTarget(e, range.max) 
+                  || e.target === this.el.form.targetEl
+                ){
                 range.update(this)
                 if(this.el.url) this.el.url.constructRange( range )
               }
@@ -90,13 +95,14 @@ Action.prototype.update = function(e){
   
   
       let result = compare.filter( t => t );
-    
       
       data.hide = datas && datas.indexOf(data) === -1 ? true : false;
+
+
   
       
       if (!data.hide) data.hide = compare.length === result.length  ? false : true;
-  
+
       data.hide ? data.abc_selector.classList.add( "abc-hide" ) : data.abc_selector.classList.remove( "abc-hide" )
       data.hide ? data.abc_selector.classList.remove( "abc-show" ) : data.abc_selector.classList.add( "abc-show" )
   

@@ -155,11 +155,11 @@ const abc = Filter.init({
   //   // body : false
   // })
 
-  AutoComplete.init({
-    url    :  `https://bruxellesdata.opendatasoft.com/api/records/1.0/search/?dataset=stations-villo-disponibilites-en-temps-reel&rows=100`,
-    target : "[name='abc_search']",
-    compare : ['fields.name', 'fields.address'],
-    results : {
-      path: 'records'
-    }
-  })
+  // AutoComplete.init({
+  //   url    :  `https://bruxellesdata.opendatasoft.com/api/records/1.0/search/?dataset=stations-villo-disponibilites-en-temps-reel&rows=100`,
+  //   target : "[name='abc_search']",
+  //   compare : ['fields.name', 'fields.address'],
+  //   results : {
+  //     path: 'records'
+  //   }
+  // })

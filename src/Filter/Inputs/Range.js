@@ -31,6 +31,7 @@ Range.prototype.validate = function (data){
     if(this.multiple) {
         const isMin = this.validateMin( data );
         const isMax = this.validateMax( data );
+       
         
         return isMin && isMax
     }
@@ -65,10 +66,12 @@ Range.prototype.updateMax = function ( input ){
 }
 
 Range.prototype.validateMin = function ( data ){
+    if(this.min.value === "") return true
     let isValidated = inArray(data, this.compare, this.min.value);
     return Number(isValidated) >= Number(this.min.value);
 }
 Range.prototype.validateMax = function ( data ){
+    if(this.max.value === "") return true
     let isValidated = inArray(data, this.compare, this.max.value);
 
     return Number(isValidated) <= Number(this.max.value);

@@ -76,7 +76,7 @@ Filter.prototype.construct = function(params){
         this.facette = new Facette();
         this.facette = setArray(this.facette, params.facette)
     }
-    
+    this.form.targetEl = document.querySelector(this.form.target)
     return this;
 
 } 

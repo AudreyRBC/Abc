@@ -7,6 +7,7 @@ var onRedirect = require ( '../Actions/Redirect' )
 var Template = require ( '../Options/Template' );
 var NumberResults = require ( '../Options/NumberResults' );
 
+var LoadMore = require ( '../Options/LoadMore' );
 module.exports = () => { return new Datas() }
 
 function Datas(){
@@ -54,6 +55,7 @@ Datas.prototype.filtered = function(datas, el) {
     d.hide = false;
     
     //stock DOM element
+    if(!d || typeof d === 'undefined' || !this.results) return;
     const id = inArray(d, this.results.id);
     
     d.id = `${this.results.prefix}${id}`;
@@ -104,6 +106,7 @@ Datas.prototype.Fetch = function(error, success, el){
   else {
 
     this.datas = success;
+    
     this.results = el.results
     
     if( el.results.path ) this.datas = inArray(this.datas, el.results.path);
