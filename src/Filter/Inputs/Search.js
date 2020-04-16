@@ -32,6 +32,7 @@ Search.prototype.update = function(options){
     input.setAttribute('value', input.value)
     // Insert value in instance
     this.value = input.value
+    options.el.inputValues[this.name] = this.value;
 
 }
 Search.prototype.create = function(options){

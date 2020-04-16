@@ -43,6 +43,8 @@ Select.prototype.update = function(options){
     // Insert value in instance
     this.value = [...checked].map( input => input.value )
     this.names = [...checked].map( input => input.hasAttribute('id') && this.id ? input.getAttribute('id') : input.value );
+
+    options.el.inputValues[this.name] = this.names;
 }
 
 Select.prototype.create = function(options){

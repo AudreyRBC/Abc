@@ -39,8 +39,8 @@ const abc = Filter.init({
     form  :
     {
       container: '.abc-filter',
-      action: "submit",
-      target: ".abc-redirect"
+      action: "change",
+      // target: ".abc-redirect"
     },
     inputs: {
       search: [
@@ -114,7 +114,15 @@ const abc = Filter.init({
     // }
 
   })
+  const events = ['click', 'change', 'keyup', 'input']
+  events.forEach( event => {
+    document.querySelector('.abc-filter').addEventListener(event, e => {
+      const values = abc.getValues();
+      console.log(values)
+    })
+  })
 
+  
   Select.init({
     target : '[name="abc_select--simple"]',
     multiple: false,
@@ -129,6 +137,8 @@ const abc = Filter.init({
     }
     // body : false
   })
+
+
 
   // Range.init({
   //   multiple: true,

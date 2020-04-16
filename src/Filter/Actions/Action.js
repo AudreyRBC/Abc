@@ -8,7 +8,7 @@ function Action(el){
 };
 
 Action.prototype.update = function(e){
-
+  
     for (var key in this.el.inputs) {
       switch (key) {
           case "checkbox" : {

@@ -56,7 +56,7 @@ function Filter(params){
     this.facette = false
 
     this.load_more = false;
-
+    this.inputValues = {};
     
     return this;
 
@@ -76,11 +76,15 @@ Filter.prototype.construct = function(params){
         this.facette = new Facette();
         this.facette = setArray(this.facette, params.facette)
     }
-    this.form.targetEl = document.querySelector(this.form.target)
+    ;
+    
+    this.form.targetEl = this.form.target ? document.querySelector(this.form.target) : ''
     return this;
 
 } 
-
+Filter.prototype.getValues = function(){
+    return this.inputValues;
+}
 Filter.prototype.setInputs = function( inputs ) {
 
     // --- set inputs --- //

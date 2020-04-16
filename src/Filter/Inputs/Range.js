@@ -45,6 +45,8 @@ Range.prototype.update = function(options){
     if(!this.multiple){
         const input = this.name ? options.el.formObj.querySelector(`[name="${this.name}"]`) : options.el.formObj.querySelector(`[name="${this.min.name}"]`)
         isValidated = this.updateMin( input );
+        options.el.inputValues[this.min.name ? this.min.name : this.name] = this.min.value;
+        
     }
 
     if(this.multiple) {
@@ -53,6 +55,8 @@ Range.prototype.update = function(options){
 
         this.updateMin( inputMin );
         this.updateMax( inputMax );
+        options.el.inputValues[this.min.name] = this.min.value;
+        options.el.inputValues[this.max.name] = this.max.value;
     }
 
     
@@ -60,6 +64,7 @@ Range.prototype.update = function(options){
 
 Range.prototype.updateMin = function ( input ){
     this.min.value = input.value
+    
 }
 Range.prototype.updateMax = function ( input ){
     this.max.value = input.value

@@ -116,6 +116,8 @@ Radio.prototype.update = function(options){
     // Insert value in instance
     this.value = [...checked].map( input => input.value )
     this.names = [...checked].map( input => input.getAttribute('id') && this.id ? input.getAttribute('id') : input.value );
+
+    options.el.inputValues[this.name] = this.names;
 }
 Radio.prototype.create = function(options){
 
@@ -132,4 +134,6 @@ Radio.prototype.create = function(options){
             input.removeAttribute("checked")
         } 
     });
+
+    
 }
