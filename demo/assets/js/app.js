@@ -1,10 +1,13 @@
 import  "../scss/app.scss"
 
 // import {Filter, Select} from './../../../build/abc.js'
-import {Filter, Select, Range, AutoComplete} from './../../../build/abc'
-// import {Filter, Select, Range, AutoComplete} from 'abcfilter/abc' 
+// import {Filter, Select, Range, AutoComplete} from './../../../build/abc/abc'
+import {Filter, Select, Range, AutoComplete} from 'abc-lib' 
 
-// import ABCFilter from './../../../build/abcfilter'
+// import Filter from './../../../build/abc_filter/abc_filter'
+// import AutoComplete from './../../../build/abc_autocomplete/abc_autocomplete'
+// import Select from './../../../build/abc_select/abc_select'
+// import Range from './../../../build/abc_range/abc_range'
 // console.log(ABCFilter);
 
 

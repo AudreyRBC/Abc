@@ -5,9 +5,9 @@ var Head = require ('./Head' );
 var Body = require ('./Body' );
 var Options = require ('./Options' );
 
-module.exports = (el) => { return new Input(el) }
+module.exports = (el) => { return new SelectInput(el) }
 
-function Input(el){
+function SelectInput(el){
     this.input = {
         multiple : false,
         tag: 'div',
@@ -26,14 +26,13 @@ function Input(el){
     this.focus = -1
     
 }
-// Input.prototype.onOpen = function(){
+// SelectInput.prototype.onOpen = function(){
 //     this.head.target.setAttribute('aria-expanded', 'true');
 // }
-Input.prototype.bindEvents = function(){
+SelectInput.prototype.bindEvents = function(){
 
     document.addEventListener('click', e => {
         if(this.open === true){
-            console.log( this.body);
             if( e.target != this.body.target && e.target != closest(e.target, this.body.className, this.body.className) 
                 && e.target != this.head.target && e.target != closest(e.target, this.head.className, this.head.className) )
             { 
@@ -114,12 +113,12 @@ Input.prototype.bindEvents = function(){
 
 }
 
-Input.prototype.update = function(open){
+SelectInput.prototype.update = function(open){
     this.open = open ? open : !this.open
     this.state()
 }
 
-Input.prototype.construct = function(params){
+SelectInput.prototype.construct = function(params){
 
     if (params) this.input = setArray(this.input, params);
 
@@ -137,7 +136,7 @@ Input.prototype.construct = function(params){
 }
 
 
-Input.prototype.create = function(){
+SelectInput.prototype.create = function(){
     this.options.options = this.el.options
     this.options.selected = this.el.selectedOptions
             
@@ -159,7 +158,7 @@ Input.prototype.create = function(){
     this.bindEvents()
 }
 
-Input.prototype.state = function(){
+SelectInput.prototype.state = function(){
     this.open ? this.container.classList.add(this.input.openClass) : this.container.classList.remove(this.input.openClass)
     this.body.state(this.open)
     this.head.update(this.options)

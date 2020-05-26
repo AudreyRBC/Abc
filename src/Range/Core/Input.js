@@ -1,9 +1,9 @@
 var { setArray }  = require ('../../Helpers/Array' );
 
 
-module.exports = (el) => { return new Input(el) }
+module.exports = (el) => { return new RangeInput(el) }
 
-function Input(el){
+function RangeInput(el){
     this.diff = 1
     this.multiple = false
     this.name    = false
@@ -44,7 +44,7 @@ function Input(el){
     }
     
 }
-Input.prototype.construct = function(params){
+RangeInput.prototype.construct = function(params){
 
     
     if (params) setArray(this, params);
@@ -78,7 +78,7 @@ Input.prototype.construct = function(params){
     }
     this.bindEvents()  
 }
-Input.prototype.bindEvents = function(){
+RangeInput.prototype.bindEvents = function(){
 
     if(this.min.target) this.min.target.addEventListener('input', e => {
        
@@ -98,7 +98,7 @@ Input.prototype.bindEvents = function(){
         this.updateLine('max')
     })
 }
-Input.prototype.update = function(input){
+RangeInput.prototype.update = function(input){
     this[input].target.setAttribute('value', this[input].target.value)
     this[input].value = this[input].target.value
     let HTML;
@@ -119,14 +119,14 @@ Input.prototype.update = function(input){
     if(this[input].label.el) this[input].label.el.innerHTML = HTML
 }
 
-Input.prototype.createLine = function(){
+RangeInput.prototype.createLine = function(){
     const line = document.createElement('span')
     line.classList.add('abc_range__line')
     line.style.transformOrigin = 'left'
     return line
 }
 
-Input.prototype.updateLine = function( val ){
+RangeInput.prototype.updateLine = function( val ){
     const min = (100 * this.min.value) / this.min.max
     const max = (this.min.value / this.max.max) - (this.max.value / this.max.max)
         

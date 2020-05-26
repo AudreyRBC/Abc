@@ -3,9 +3,9 @@ var { setArray, inArray }  = require ('../../Helpers/Array' );
 var { closest }  = require ('../../Helpers/Utils' );
 
 
-module.exports = () => { return new AutoComplete() }
+module.exports = () => { return new AutoCompleteInput() }
 
-function AutoComplete(){
+function AutoCompleteInput(){
     this.url = false
     this.datas = false
     this.results = {
@@ -29,7 +29,7 @@ function AutoComplete(){
 
     return this
 }
-AutoComplete.prototype.construct = function(params){
+AutoCompleteInput.prototype.construct = function(params){
     let getDatas;
     if (params) setArray(this, params);
     
@@ -54,7 +54,7 @@ AutoComplete.prototype.construct = function(params){
     return this
     
 }
-AutoComplete.prototype.find = function() {
+AutoCompleteInput.prototype.find = function() {
 
     if(this.url){
       fetch(this.url, this)  
@@ -64,7 +64,7 @@ AutoComplete.prototype.find = function() {
     }
   
 }
-AutoComplete.prototype.Fetch = function(error, success){
+AutoCompleteInput.prototype.Fetch = function(error, success){
     if(error) console.log(error);
     else {
   
@@ -75,7 +75,7 @@ AutoComplete.prototype.Fetch = function(error, success){
  
     }
   }
-AutoComplete.prototype.findMatches = function(options) {
+AutoCompleteInput.prototype.findMatches = function(options) {
     return options.el.datas.filter(d => {
         this.compare.forEach( c => {
             const compare = inArray(d, c);
@@ -85,7 +85,7 @@ AutoComplete.prototype.findMatches = function(options) {
         })
     });
 }
-AutoComplete.prototype.match = function(options, value, input) {
+AutoCompleteInput.prototype.match = function(options, value, input) {
     const toMatch = value ? value : this.value
     if (toMatch && toMatch.length > 0 ) this.target.classList.add('abc-autocomplete--open')
     else this.target.classList.remove('abc-autocomplete--open')
@@ -113,7 +113,7 @@ AutoComplete.prototype.match = function(options, value, input) {
   
 
   }
-AutoComplete.prototype.getResults = function(options, value){
+AutoCompleteInput.prototype.getResults = function(options, value){
    
     
     let html = '';
@@ -125,7 +125,6 @@ AutoComplete.prototype.getResults = function(options, value){
             
             const highlight = compare.replace(regex, `<span class="hl">${value}</span>`);
             const str = String(compare).match(regex)
-            console.log();
             
             if(str && value!="" && typeof value != 'undefined' && compare.toLowerCase() != value){
                 html+= this.template(highlight);

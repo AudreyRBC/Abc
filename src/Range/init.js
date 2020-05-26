@@ -1,6 +1,6 @@
-var Input = require('./Core/Input')
+var RangeInput = require('./Core/Input')
 var Range = module.exports = {
     init: function (params) {
-        return new Input().construct(params) 
+        return new RangeInput().construct(params) 
     }
 }
