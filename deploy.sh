@@ -22,5 +22,22 @@ elif [ -n "$(git log origin/master..master)" ]; then
    change
 fi
 
+cd src/AutoComplete
+sh deploy.sh -c "$COMMIT"
+cd ../Filter
+sh deploy.sh -c "$COMMIT"
+cd ../Select
+sh deploy.sh -c "$COMMIT"
+cd ../Range
+sh deploy.sh -c "$COMMIT"
 
-git push --recurse-submodules=on-demand
+cd ../../build/abc
+npm publish
+cd ../abc_autocomplete
+npm publish
+cd ../abc_filter
+npm publish
+cd ../abc_select
+npm publish
+cd ../abc_range
+npm publish
