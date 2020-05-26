@@ -21,3 +21,6 @@ if [ -n "$(git status --porcelain)" ]; then
 elif [ -n "$(git log origin/master..master)" ]; then
    change
 fi
+
+
+git push --recurse-submodules=on-demand
