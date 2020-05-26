@@ -107,6 +107,8 @@ Filter.prototype.get = function(array, val, fct ) {
     array.forEach( (el, index)=> {
         let obj = new fct();
         
+        
+        
         if(val === "range" && el.multiple){
             if(!document.querySelector(`[name="${el.min.name}"]`) && !document.querySelector(`[name="${el.max.name}"]`)){
                 delete array[index];
@@ -149,6 +151,9 @@ Filter.prototype.get = function(array, val, fct ) {
         if(val === "range") this.inputs[val].push( setArrayRange( obj, el, this.formObj ) )
         else this.inputs[val].push( setArray( obj, el ) )
 
+        if(typeof obj.set === "function") obj = obj.set(this)
+
         if(el.value) obj.create(this, el.value);
+        
     })
 }

@@ -56,7 +56,7 @@ Action.prototype.update = function(e){
             if(!this.el.inputs.range) error( ' No range setted ');
             this.el.inputs.range.forEach( range => {
               if( !range.multiple && isTarget(e, range) 
-                  ||  !range.multiple && isTarget(e, range.min)
+                  || !range.multiple && isTarget(e, range.min)
                   || range.multiple && isTarget(e, range.min) 
                   || range.multiple && isTarget(e, range.max) 
                   || e.target === this.el.form.targetEl

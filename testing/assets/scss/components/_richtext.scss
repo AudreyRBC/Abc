@@ -52,39 +52,6 @@ p {
   }
 }
 
-.walk {
-  @include rem-size(160); 
-  line-height: 130px;
-  transform: translateY(433px);
-  transform-origin: top left;
-}
-
-.with {
-  @include rem-size(180); 
-  line-height: 130px;
-  transform: translateY(433px);
-  transform-origin: top left;
-}
-
-.me {
-  @include rem-size(309.5); 
-  line-height: 99px;
-  height: 173px;
-  transform: translateY(433px);
-  transform-origin: top left;
-}
-
-.name {
-  @include rem-size(100); 
-  line-height: 75px;
-  transform: translateX(100%);
-  transform-origin: top left;
-  letter-spacing: 6px;
-
-  position                         : absolute;
-  left                             : 0;
-  bottom                           : 0;
-}
 
 // TEMP
 .line {

@@ -1,5 +1,6 @@
 var Fuse = require ('fuse.js' );
 var { setArray, inArray }  = require ('../../Helpers/Array' );
+var { closest }  = require ('../../Helpers/Utils' );
 
 
 module.exports = () => { return new AutoComplete() }
@@ -10,6 +11,7 @@ function AutoComplete(){
     this.results = {
         path : ''
     }
+    this.compare = false
     this.label = {
         target: false,
         default: false,
@@ -19,27 +21,37 @@ function AutoComplete(){
     }
     this.max = 100
     this.target = false
-    this.template = {}
+    this.template = (highlight) => {
+        return `<li class="abc-autocomplete__item">
+                    <span class="name">${highlight}</span>
+                </li>`
+    }
+
+    return this
 }
 AutoComplete.prototype.construct = function(params){
     let getDatas;
     if (params) setArray(this, params);
+    
+    this.className = this.target
+    this.target = document.querySelector(this.target)
+
     if(this.url) {
         getDatas = this.find
         getDatas()
-
         
+        Promise.all([getDatas]).then( () => {
+            var options = { 
+                threshold: 0.4,
+                keys: this.compare,
+                distance: 10000,
+              }
+              var fuse = new Fuse(datas, options)
+              return value ? fuse.search(value) : datas
+        })
     }
-
-    Promise.all([getDatas]).then( () => {
-        var options = { 
-            threshold: 0.4,
-            keys: compare,
-            distance: 10000,
-          }
-          var fuse = new Fuse(datas, options)
-          return value ? fuse.search(value) : datas
-    })
+    
+    return this
     
 }
 AutoComplete.prototype.find = function() {
@@ -63,7 +75,66 @@ AutoComplete.prototype.Fetch = function(error, success){
  
     }
   }
+AutoComplete.prototype.findMatches = function(options) {
+    return options.el.datas.filter(d => {
+        this.compare.forEach( c => {
+            const compare = inArray(d, c);
+            
+            const regex = new RegExp(this.value, 'gi');
+            return String(compare).match(regex)
+        })
+    });
+}
+AutoComplete.prototype.match = function(options, value, input) {
+    const toMatch = value ? value : this.value
+    if (toMatch && toMatch.length > 0 ) this.target.classList.add('abc-autocomplete--open')
+    else this.target.classList.remove('abc-autocomplete--open')
   
+  
+    // if (options.max_results && matchArray.length > options.max_results) html = fullResult(matchArray, options)
+    // else if (matchArray.length === 0 ) html = noResult(matchArray, options)
+    // else
+
+    this.getResults(options, toMatch)
+    
+    // target.innerHTML = html;
+    // target.style.height = [...target.children].reduce((tot, num) => tot + Number( num.clientHeight ) + 28 , 0 ) + "px"
+    
+    this.target.childNodes.forEach(item => {
+        item.addEventListener('click', e => {
+            input.value = item.innerText
+            input.setAttribute('value', item.innerText);
+            this.target.classList.remove('abc-autocomplete--open')
+        })
+        document.addEventListener('click', e => {
+            if(e.target != this.target && this.target != closest(e.target, this.className,  this.className)) this.target.classList.remove('abc-autocomplete--open')
+        })
+    })
+  
+
+  }
+AutoComplete.prototype.getResults = function(options, value){
+   
+    
+    let html = '';
+    options.el.datas.map(d => {
+        this.compare.forEach( c => {
+            const compare = inArray(d, c);
+            
+            const regex = new RegExp(value, 'gi');
+            
+            const highlight = compare.replace(regex, `<span class="hl">${value}</span>`);
+            const str = String(compare).match(regex)
+            console.log();
+            
+            if(str && value!="" && typeof value != 'undefined' && compare.toLowerCase() != value){
+                html+= this.template(highlight);
+            }
+        })
+    });
+
+    this.target.innerHTML = html
+}
   
 //   function autocomplete(options){
   
@@ -132,18 +203,7 @@ AutoComplete.prototype.Fetch = function(error, success){
   
 //   }
   
-//   function results(toMatch, matchArray, options){
-//     return matchArray.map(d => {
-//       const attr = inArray(d, options.to_show)
-//       const regex = new RegExp(toMatch, 'gi');
-//       const name = attr.replace(regex, `<span class="hl">${toMatch}</span>`);
-//       return `
-//         <li class="autocomplete-item">
-//           <span class="name">${name}</span>
-//         </li>
-//       `;
-//     }).join('');
-//   }
+//   
 //   function noResult(matchArray, options){
 //       return `
 //         <li class="autocomplete-item">

@@ -1,4 +1,5 @@
 var { setArray }  = require ('../../Helpers/Array' );
+var { closest }  = require ('../../Helpers/Utils' );
 
 var Head = require ('./Head' );
 var Body = require ('./Body' );
@@ -17,7 +18,7 @@ function Input(el){
 
     this.el = el;
     // this.el.setAttribute('tabIndex', '-1')
-
+    this.open = false
     this.body = new Body()
     this.head = new Head()
     this.options = new Options()
@@ -29,6 +30,17 @@ function Input(el){
 //     this.head.target.setAttribute('aria-expanded', 'true');
 // }
 Input.prototype.bindEvents = function(){
+
+    document.addEventListener('click', e => {
+        if(this.open === true){
+            console.log( this.body);
+            if( e.target != this.body.target && e.target != closest(e.target, this.body.className, this.body.className) 
+                && e.target != this.head.target && e.target != closest(e.target, this.head.className, this.head.className) )
+            { 
+                this.update(false) 
+            }
+        }
+    })
 
     this.head.target.addEventListener('click', evt =>  { 
         evt.preventDefault()
@@ -75,6 +87,8 @@ Input.prototype.bindEvents = function(){
         }
         
     })
+
+    
     this.options.els.forEach( (el) => {
         el.addEventListener('click', () => {
             if( !this.input.multiple ){
@@ -90,12 +104,13 @@ Input.prototype.bindEvents = function(){
             
            
         })
+        
         // el.addEventListener('keydown', evt => {
         //     !this.input.multiple ? this.options.single(el) : this.options.multi(el)
         //     this.head.update(this.options)
         // })
     })
-
+    
 
 }
 

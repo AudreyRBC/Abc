@@ -48,6 +48,7 @@ Select.prototype.update = function(options){
 }
 
 Select.prototype.create = function(options){
+    
     const select = options.formObj.querySelector(`[name="${this.name}"]`);
 
     const inputs = options.formObj.querySelectorAll(`[name="${this.name}"] option`)

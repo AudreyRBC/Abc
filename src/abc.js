@@ -5,17 +5,22 @@ var ABCRange = require('./Range/init.js')
 var ABCAutoComplete = require('./AutoComplete/init.js')
 
 
-let abc;
+let abc, autocomplete, range;
+window.app = [];
 var Select = {
     init: function (params) { new ABCSelect.init(params) },
     test: function() { console.log('ABC Select is running') }
 };
 
 var Range = {
-    init: function (params) { new ABCRange.init(params) },
+    init: function (params) { 
+        return new ABCRange.init(params);  
+    },
 }
 var AutoComplete = {
-    init: function (params){ new ABCAutoComplete.init(params) }
+    init: function (params){ 
+        return new ABCAutoComplete.init(params);
+    }
 }
 var Filter = {
     init: function (params) { 

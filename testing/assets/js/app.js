@@ -48,6 +48,19 @@ const abc = Filter.init({
           name: 'abc_search',
           compare : ['fields.name', 'fields.address'],
           url_name: "keywords",
+          autocomplete : {
+            fn : AutoComplete,
+            target : '.abc-autocomplete__items',
+            label : {
+                target: false,
+                default: false,
+                singular:false,
+                plural:false,
+                zero:false
+            },
+            max : 100,
+            template: {},
+            }
         }
       ],
       checkbox: [
@@ -118,7 +131,6 @@ const abc = Filter.init({
   events.forEach( event => {
     document.querySelector('.abc-filter').addEventListener(event, e => {
       const values = abc.getValues();
-      console.log(values)
     })
   })
 
@@ -126,13 +138,14 @@ const abc = Filter.init({
   Select.init({
     target : '[name="abc_select--simple"]',
     multiple: false,
-    all: true
+    all: true,
     // body : false
   })
   Select.init({
     target : '[name="abc_select--multi"]',
     multiple: true,
     head : {
+      default: "Avalaible bike",
       max_char: 30
     }
     // body : false
@@ -140,30 +153,30 @@ const abc = Filter.init({
 
 
 
-  // Range.init({
-  //   multiple: true,
-  //   // diff
-  //   min: {
-  //     name: "abc_range_min",
-  //     label: {
-  //       target: '.abc_range_min__label',
-  //       zero:(val) => {return `no stand`},
-  //       singular:(val) => {return `${val} stand`},
-  //       plural:(val) => {return `${val} stands`},
-  //     },
-  //   },
-  //   max: {
-  //     name: "abc_range_max",
-  //     label: {
-  //       target: '.abc_range_max__label',
-  //       zero:(val) => {return `no stand`},
-  //       singular:(val) => {return `${val} stand`},
-  //       plural:(val) => {return `${val} stands`},
+  Range.init({
+    multiple: true,
+    // diff
+    min: {
+      name: "abc_range_min",
+      label: {
+        target: '.abc_range_min__label',
+        zero:(val) => {return `no stand`},
+        singular:(val) => {return `${val} stand`},
+        plural:(val) => {return `${val} stands`},
+      },
+    },
+    max: {
+      name: "abc_range_max",
+      label: {
+        target: '.abc_range_max__label',
+        zero:(val) => {return `no stand`},
+        singular:(val) => {return `${val} stand`},
+        plural:(val) => {return `${val} stands`},
 
-  //     },
-  //   }
-  //   // body : false
-  // })
+      },
+    }
+    // body : false
+  })
 
   // AutoComplete.init({
   //   url    :  `https://bruxellesdata.opendatasoft.com/api/records/1.0/search/?dataset=stations-villo-disponibilites-en-temps-reel&rows=100`,
