@@ -1,0 +1,12 @@
+[submodule "src/Filter"]
+	path = src/Filter
+	url = git@github.com:AudreyRBC/abc-filter.git
+[submodule "src/Select"]
+	path = src/Select
+	url = git@github.com:AudreyRBC/abc-select.git
+[submodule "src/Range"]
+	path = src/Range
+	url = git@github.com:AudreyRBC/abc-range.git
+[submodule "src/Autocomplete"]
+	path = src/Autocomplete
+	url = git@github.com:AudreyRBC/abc-autocomplete.git
