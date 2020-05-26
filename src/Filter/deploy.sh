@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./../../../function.sh
+source ./../../function.sh
 
 # abort on errors
 set -e
