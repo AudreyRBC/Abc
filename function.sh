@@ -33,11 +33,11 @@ set_tag() {
 
 update(){
    set_commit
-   set_tag
+#    set_tag
 }
 change(){
    git push origin master
-   set_tag
+#    set_tag
 }
 
 test(){
