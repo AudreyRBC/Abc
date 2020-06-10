@@ -85,32 +85,40 @@ AutoCompleteInput.prototype.findMatches = function(options) {
         })
     });
 }
-AutoCompleteInput.prototype.match = function(options, value, input) {
+AutoCompleteInput.prototype.match = function(options, value, search) {
     const toMatch = value ? value : this.value
-    if (toMatch && toMatch.length > 0 ) this.target.classList.add('abc-autocomplete--open')
-    else this.target.classList.remove('abc-autocomplete--open')
+    // if (toMatch && toMatch.length > 0 ) this.target.classList.add('abc-autocomplete--open')
+    // else this.target.classList.remove('abc-autocomplete--open')
   
   
     // if (options.max_results && matchArray.length > options.max_results) html = fullResult(matchArray, options)
     // else if (matchArray.length === 0 ) html = noResult(matchArray, options)
     // else
 
-    this.getResults(options, toMatch)
+    const results = this.getResults(options, toMatch)
+    if(results.length > 0)this.target.classList.add('abc-autocomplete--open')
+    else this.target.classList.remove('abc-autocomplete--open')
     
     // target.innerHTML = html;
     // target.style.height = [...target.children].reduce((tot, num) => tot + Number( num.clientHeight ) + 28 , 0 ) + "px"
     
-    this.target.childNodes.forEach(item => {
+    this.target.children.forEach(item => {
         item.addEventListener('click', e => {
-            input.value = item.innerText
-            input.setAttribute('value', item.innerText);
+            
+            search.input.value = item.innerText
+            search.input.setAttribute('value', item.innerText);
             this.target.classList.remove('abc-autocomplete--open')
-        })
-        document.addEventListener('click', e => {
-            if(e.target != this.target && this.target != closest(e.target, this.className,  this.className)) this.target.classList.remove('abc-autocomplete--open')
+            search.update(options)
+            
+            if(options.el.url) options.el.url.construct( search )
         })
     })
-  
+
+    document.addEventListener('click', e => {
+        if(this.target.classList.contains('abc-autocomplete--open')){
+            if(e.target != this.target && this.target != closest(e.target, this.className,  this.className)) this.target.classList.remove('abc-autocomplete--open')
+        }
+    })
 
   }
 AutoCompleteInput.prototype.getResults = function(options, value){
@@ -133,6 +141,7 @@ AutoCompleteInput.prototype.getResults = function(options, value){
     });
 
     this.target.innerHTML = html
+    return html
 }
   
 //   function autocomplete(options){

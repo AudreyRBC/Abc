@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abc Filter</title>
+    <link rel="stylesheet" href="./dist/css/abc_testing.min.css">
+</head>
+<body>
+    <header class="topbar">  
+        <a href="index.html">Abc Filter</a>
+
+        <nav class="topbar__navigation">
+            <ul>
+                <li><a href="">Documentation</a></li>
+                <li><a href="">Npm</a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">abc.audreyrobic.be</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="abc-sidebar">
+            <h1>Wanna test?</h1>
+            <!-- <p>json : <a href="https://api.jcdecaux.com/vls/v1/stations?apiKey=6d5071ed0d0b3b68462ad73df43fd9e5479b03d6&contract=Bruxelles-Capitale">Villo Stations </a></p> -->
+            <form>
+                <h2>Settings</h2>
+                <fieldset>
+                    <h3>Url</h3>
+                    <div>
+                        <input id="create_url" name="create_url" type="checkbox" checked>
+                        <label for="create_url">Dynamic url</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <!-- Search options -->
+                    <h3>Action mode</h3>
+                    <!-- Change mode -->
+                    <div>
+                        <input type="radio" id="change" name="action" value="change" checked>
+                        <label for="change">On change</label>
+                    </div>
+                    <!-- Submit mode -->
+                    <div>
+                        <input type="radio" id="submit" name="action" value="submit">
+                        <label for="submit">On submit</label>
+                    </div>
+                    <!-- Redirect mode -->
+                    <div>
+                        <input type="radio" id="redirect" name="action" value="redirect">
+                        <label for="redirect">On redirect</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <h3>Inputs</h3>
+                    <fieldset>
+                        <h4>Search</h4>
+                        <div>
+                            <input id="enable_search" name="enable_search" type="checkbox" checked>
+                            <label for="enable_search">Enable</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Select</h4>
+                        <div>
+                            <input id="enable_select" name="enable_select" type="checkbox" checked>
+                            <label for="enable_select">Enable select</label>
+                        </div>
+                        <div>
+                            <input id="enable_multiselect" name="enable_multiselect" type="checkbox" checked>
+                            <label for="enable_multiselect">Enable multi select</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Checkbox</h4>
+                        <div>
+                            <input id="enable_checkbox" name="enable_checkbox" type="checkbox" checked>
+                            <label for="enable_checkbox">Enable checkbox group</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Radio</h4>
+                        <div>
+                            <input id="enable_radio" name="enable_radio" type="checkbox" checked>
+                            <label for="enable_radio">Enable radio group</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Range</h4>
+                        <div>
+                            <input id="enable_range" name="enable_range" type="checkbox" checked>
+                            <label for="enable_range">Enable range</label>
+                        </div>
+                        <div>
+                            <input id="enable_multirange" name="enable_multirange" type="checkbox" checked>
+                            <label for="enable_multirange">Enable multi range</label>
+                        </div>
+                    </fieldset>
+                </fieldset>
+                
+            </form>
+        </section>  
+        <section class="abc-filter">
+            <button type="button" class="btn btn--settings">Filter settings</button>
+            
+            <form class="abc-filter__form">
+
+                <!-- search -->
+                <fieldset class="abc-autocomplete">
+                    <input name="abc_search" type="search" placeholder="Type something…">
+                    <ul class="abc-autocomplete__items"></ul>
+                </fieldset>
+                
+                <!-- Simple select -->
+                <fieldset>
+                    <select name="abc_select--simple" >
+                        <option id="all" value="">Number of stands</option>
+                        <option id="c-est-cool-1" value="20">20 stands</option>
+                        <option id="c-est-cool-2" value="22">22 stands</option>
+                        <option id="c-est-cool-3" value="19">19 stands</option>
+                        <option id="c-est-cool-4" value="14">14 stands</option>
+                        <option id="c-est-cool-5" value="30">30 stands</option>
+                        <option id="c-est-cool-6" value="25">25 stands</option>
+                    </select>
+                </fieldset>
+                
+                
+                <!-- Multi select -->
+                <fieldset>
+                    <select multiple="true" name="abc_select--multi">
+                        <option id="all-1" value="">Avalaible bike</option>
+                        <option id="c-est-cool-6" value="20">20 bikes</option>
+                        <option id="c-est-cool-7" value="22">22 bikes</option>
+                        <option id="c-est-cool-8" value="19">19 bikes</option>
+                        <option id="c-est-cool-9" value="14">14 bikes</option>
+                        <option id="c-est-cool-10" value="30">30 bikes</option>
+                        <option id="c-est-cool-11" value="25">25 bikes</option>
+                    </select>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Available stand</legend>
+                    
+                    <div class="abc_range">
+                        <input class="abc_range__input" id="min" name="abc_range_min" value="0" type="range" min="0" max="40">
+                        
+                        <input class="abc_range__input" name="abc_range_max" value="40" type="range" min="0" max="40">
+                        
+                    </div>
+                    <div class="abc_range__labels">
+                        <label class="abc_range__label label abc_range_min__label" for="min">0</label>
+                        <label class="abc_range__label abc_range_max__label" for="max">40</label>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Status</legend>
+                    <div>
+                        <input id="open" type="checkbox" name="abc_status" value="OPEN">
+                        <label for="open" >Open</label>
+                    </div>
+                    <div>
+                        <input id="close" type="checkbox" name="abc_status" value="CLOSED">
+                        <label for="close">Close</label>
+                    </div>
+                </fieldset>
+<!--        
+                <fieldset>
+                    <legend>Bike</legend>
+                    <div>
+                        <input id="Bruxelles-Capitale" type="radio" name="abc_contract" value="Bruxelles-Capitale" checked>
+                        <label for="Bruxelles-Capitale" >Bruxelles-Capitale</label>
+                    </div>
+                    <div>
+                        <input id="other" type="radio" name="abc_contract" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </fieldset> -->
+            </form>
+        </section>
+        
+<!-- 
+        <a  class="abc-redirect btn" href="file:///Users/audreyrobic/projects/abc/abc-filter/testing/index.html">
+                Redirect
+        </a> -->
+        <article class="abc-results">
+            <section><strong class="abc-nbresults"></strong></section>
+            <section class="abc-results--els">
+                <!-- <div class="abc-el" id="abc-233">
+                    <h3>233 - PARC DUDEN / DUDEN PARK</h3> 
+                    <p>Stands: 20</p>
+                    <p>Availaible: 5</p>
+                </div>
+                <div class="abc-el" id="abc-146">
+                    <h3>146 - LEOPOLD III/LEOPOLD III</h3> 
+                    <p>Stands: 25</p>
+                    <p>Availaible: 11</p>
+                </div>
+                <div class="abc-el" id="abc-298">
+                    <h3>298 - HALL DES SPORTS</h3> 
+                    <p>Stands: 25</p>
+                    <p>Availaible: 9</p>
+                </div>
+                <div class="abc-el" id="abc-16">
+                    <h3>016 - LOUISE / LOUIZA</h3> 
+                    <p>Stands: 40</p>
+                    <p>Availaible: 25</p>
+                </div>
+                <div class="abc-el" id="abc-69">
+                    <h3>069 - LESBROUSSART</h3> 
+                    <p>Stands: 29</p>
+                    <p>Availaible: 11</p>
+                </div>
+                   -->
+                   <div class="abc-el" id="abc-212" data-stand="20" data-available="12">
+                    stand:20
+                    available:12
+                </div>
+                <div class="abc-el" id="abc-333" data-stand="20" data-available="18">
+                    stand:20
+                    available:18
+                </div>
+                <div class="abc-el" id="abc-3" data-stand="18" data-available="12">
+                    stand:18
+                    available:12
+                </div>
+    
+            </section>
+            <!-- JSON TO TEMPLATE -->
+
+            <!-- HTML -->
+           
+            <!-- JSON TO HTML -->
+      
+            
+        </article>
+        <!-- <button class="btn" type="button">Load more</button> -->
+    </main>
+    <script src="dist/js/abc_testing.min.js"></script>
+</body>
+</html>

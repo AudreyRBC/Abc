@@ -1,6 +1,7 @@
 input[type="checkbox"]{
     position: absolute;
     opacity: 0;
+    
 }
 
 input[type="checkbox"] ~ label{
@@ -9,7 +10,7 @@ input[type="checkbox"] ~ label{
     display: flex;
     align-items: center;
 
-   
+    margin-bottom: 10px;;
 
     cursor: pointer;
     &::before, &::after{
@@ -20,7 +21,12 @@ input[type="checkbox"] ~ label{
         width: 10px;
         height: 10px;
 
-        border: 1px solid $purple;
+        border: 1px solid $yellow;
+
+        @include media-max(lg){
+            width: 25px;
+            height: 25px;
+        }
        
     }
     &::before{
@@ -32,7 +38,7 @@ input[type="checkbox"] ~ label{
         top: 50%;
         left: 0;
 
-        background: $purple;
+        background: $yellow;
         transform: translateY(-50%) scale(0);
 
         transition: transform .3s ease;

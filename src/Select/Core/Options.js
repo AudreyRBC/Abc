@@ -34,7 +34,21 @@ Options.prototype.construct = function(body){
     
     return this.els;
 }
+Options.prototype.reset = function(){
+   
+    this.els.forEach( (opt) => {
+        opt.removeAttribute('selected')
+        opt.removeAttribute('aria-selected')
 
+        opt.related.removeAttribute('selected') 
+    })
+    this.values = []
+    this.default = []
+
+    this.values = [...this.selected].map( val => val.value )
+    this.default = this.selected ? [...this.selected].map( val => val.innerHTML ) : this.options[0].innerHTML
+    
+}
 
 Options.prototype.single = function(el){
 

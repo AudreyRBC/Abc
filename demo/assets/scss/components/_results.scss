@@ -1,10 +1,32 @@
 .abc-results{
-    width: calc(100vw - 390px);
-    height: 100vh;
+    @include set-col(s,4);
+    @include set-col(md,4);
+    @include set-col(lg,10);
+    grid-row: 1;
+    height: calc(100vh - 120px);
 
-    position: fixed;
-    top: 0;
-    right: 0;
+    padding: 60px;
 
-    padding: 120px 45px 45px;
+    @include media-max(md){
+        grid-row: 2;
+        height: calc(100vh - 209px);
+    }
+
+    background: rgba(#FF0000, .3);
 }
+.abc-el{
+    margin-bottom: 30px;
+
+}
+
+.abc-nbresults{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 65px;
+
+    background: rgba(#FF0000, .3);
+    flex: 1 60%;
+}
+

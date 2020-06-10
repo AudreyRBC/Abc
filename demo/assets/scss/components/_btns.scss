@@ -36,4 +36,50 @@
             border-radius: 50%;;
         }
     }
+    &-reset{
+        flex: 2 100%;
+        margin-top: 20px;
+        @include media-min(xs){
+            flex: 2 25%;
+            margin-top: 0;
+            margin-left: 30px;
+        }
+    
+    }
+    &-reset, &-filter{
+        border: 2px solid $black;
+        background: transparent;
+        color: $black;
+
+        @include rem-size(14);
+        text-transform: uppercase;
+    }
+    &-filter{
+
+        grid-row-start: 1;
+        @include set-col(s,4);
+
+        position: relative;
+        z-index: 1;
+
+        @include media-min(md){
+            display: none;
+        }
+        &:after{
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border: 1px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            
+            border-top: 5px solid black;
+
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform:translateY(-50%)
+        }
+    }
 }

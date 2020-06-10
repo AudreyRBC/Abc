@@ -45,6 +45,14 @@ SelectInput.prototype.bindEvents = function(){
         evt.preventDefault()
         this.update() 
     })
+    this.el.addEventListener('reset', evt =>  { 
+        evt.preventDefault()
+        
+        this.options.options = this.el.options
+        this.options.selected = this.el.selectedOptions
+        this.options.reset() 
+        this.update() 
+    })
 
     this.head.target.addEventListener('keydown', evt =>  { 
         if(evt.keyCode === 13 ) this.update() 
@@ -140,8 +148,10 @@ SelectInput.prototype.create = function(){
     this.options.options = this.el.options
     this.options.selected = this.el.selectedOptions
             
+            
     this.container = document.createElement(this.input.tag);
     this.container.classList.add('abc-select');
+    if(this.input.multiple) this.container.classList.add('abc-select--multiple');
 
     this.el.parentNode.insertBefore(this.container, this.el)
    

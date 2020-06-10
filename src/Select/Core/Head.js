@@ -28,6 +28,6 @@ Head.prototype.update = function(options){
     if(!this.auto) return
     
     const html = options.selected && options.selected.length > 0 ? options.default.join(this.join) : this.default
-    
+
     this.target.innerHTML = this.max_char && html.length > this.max_char ? html.slice(0, this.max_char) + '…' : html
 }

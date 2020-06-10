@@ -3,37 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abc Filter</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Abc a complete library for you filters" />
+    <meta name="keywords" content="audrey robic, filters, library, abc, select, range, autocomplete" />
+    <meta property="og:title" content="Abc library">
+    <meta property="og:description" content="A complete library for you filters">
+    <meta property="og:type" content="Website">
+    <meta property="og:url" content="http://audreyrobic.be">
+    <meta property="og:image" content="http://audreyrobic.be/dist/images/sn.png">
+    <meta property="og:site_name" content="audrey robic">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+    <meta name="apple-mobile-web-app-title" content="Abc a complete library for you filters">
+    <meta name="google-site-verification" content="95tfsSj9gijhNIGXM0BK2Fgzo4mEp4MJ1eVJKygF-ZM" />
+    <meta name="theme-color" content="#4360E7">
+    <title>Abc Library</title>
     <link rel="stylesheet" href="./dist/css/abc_testing.min.css">
+
+    <link rel="icon" href="./dist/images/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./dist/images/sw/196x196.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="./dist/images/sw/128x128.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="./dist/images/sw/167x167.png" />
 </head>
 <body>
     <header class="topbar">  
-        <a href="index.html">Abc Filter</a>
+        <a href="https://abc.audreyrobic.be">Abc Library</a>
 
         <nav class="topbar__navigation">
             <ul>
-                <li><a href="">Documentation</a></li>
-                <li><a href="">Npm</a></li>
-                <li><a href="">Github</a></li>
-                <li><a href="">abc.audreyrobic.be</a></li>
+                <li><a class="link" target="_blank" rel="noopener" href="https://www.npmjs.com/package/abc-lib">Npm</a></li>
+                <li><a class="link" target="_blank" rel="noopener" href="https://github.com/AudreyRBC/Abc">Github</a></li>
+                
             </ul>
         </nav>
     </header>
     <main>
+        <button type="button" class="btn btn-filter">Filters</button>
         <section class="abc-filter">
+            <div class="abc-filter__more">
+                <strong class="abc-nbresults"></strong>
+                <button type="button" class="btn btn-reset">Reset</button>
+            </div>
             
             <form class="abc-filter__form">
-
                 <!-- search -->
                 <fieldset class="abc-autocomplete">
-                    <input name="abc_search" type="search" placeholder="Type something…">
+                    <input id="search" name="abc_search" type="search" placeholder="Type something…">
+                    <svg  class="abc_search__icon" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Desktop-HD-Copy-54" transform="translate(-819.000000, -724.000000)" stroke="#181818" stroke-width="3">
+                                <g id="Group-2" transform="translate(821.000000, 726.000000)">
+                                    <circle id="Oval" cx="14" cy="14" r="14"></circle>
+                                    <line x1="28" y1="28" x2="36" y2="36" id="Line" stroke-linecap="square"></line>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
                     <ul class="abc-autocomplete__items"></ul>
                 </fieldset>
                 
                 <!-- Simple select -->
                 <fieldset>
-                    <select name="abc_select--simple" >
-                        <option disabled id="all" value="">Number of stands</option>
+                    <select id="simple-select" name="abc_select--simple" >
+                        <option id="all" value="">Number of stands</option>
                         <option id="c-est-cool-1" value="20">20 stands</option>
                         <option id="c-est-cool-2" value="22">22 stands</option>
                         <option id="c-est-cool-3" value="19">19 stands</option>
@@ -46,7 +78,7 @@
                 
                 <!-- Multi select -->
                 <fieldset>
-                    <select multiple="true" name="abc_select--multi">
+                    <select id="multi-select" multiple="true" name="abc_select--multi">
                         <!-- <option disabled id="all-1" value="">Avalaible bike</option> -->
                         <option id="c-est-cool-6" value="20">20 bikes</option>
                         <option id="c-est-cool-7" value="22">22 bikes</option>
@@ -83,14 +115,21 @@
                         <label for="close">Close</label>
                     </div>
                 </fieldset>
+
+                
             </form>
         </section>
         <article class="abc-results">
-            <section><strong class="abc-nbresults"></strong></section>
+            
             <section class="abc-results--els">
             </section>
         </article>
     </main>
-    <script src="dist/js/abc_testing.min.js"></script>
+    <footer class="bottombar">
+        <a class="link" href="">Documentation incoming</a>
+                
+        <a class="link" target="_blank" rel="noopener" href="https://audreyrobic.be">audreyrobic.be</a>
+    </footer>
+    <script src="./dist/js/abc_testing.min.js"></script>
 </body>
 </html>

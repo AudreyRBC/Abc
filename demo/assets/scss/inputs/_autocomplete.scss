@@ -1,6 +1,6 @@
 .abc-autocomplete{
     position: relative;
-    
+    height: 60px;
 }
 .abc-autocomplete__items{
     overflow: auto;
@@ -15,10 +15,9 @@
     background: $white;
     width: 100%;
 
-    max-height: 500px;
+    max-height: 300px;
 
-    border: 1px solid transparent;
-    box-shadow: 6px 0 14px 0 rgba(144,134,236,0.12);
+    border: 1px solid rgba($purple,0.12);
 
     opacity: 0;
     transform: translateY(10px);
@@ -29,18 +28,21 @@
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+        transition: transform .2s ease, opacity .1s ease;
     }
 }
 .abc-autocomplete__item{
-    padding: 10px 20px;
+    padding:  20px;
     cursor: pointer;
 
     position: relative;
 
     font-family: $secondary;
-    @include rem-size(16);
+    @include rem-size(18);
+    font-weight: 400;
     color: $black;
     text-transform: lowercase;
+    border-bottom: 1px solid rgba($purple, .12);
     * {
         pointer-events: none;
     }
@@ -51,21 +53,22 @@
 
         width: 3px;
         height: 100%;
-        background: $purple;
+        background: $yellow;
 
         transform: scaleX(0);
 
         position: absolute;
         top: 0;
         left: 0;
+        transform-origin: left;
+        transition: transform .3s ease;
     }
     &:focus::before, &:hover::before{
-        background: $purple;
+        background: $yellow;
         transform: scaleX(1);
     }
 }
 
 .hl{
     font-weight: 800;
-    color: $purple;
 }

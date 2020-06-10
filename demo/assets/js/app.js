@@ -1,8 +1,9 @@
 import  "../scss/app.scss"
 
-// import {Filter, Select} from './../../../build/abc.js'
-// import {Filter, Select, Range, AutoComplete} from './../../../build/abc/abc'
-import {Filter, Select, Range, AutoComplete} from 'abc-lib' 
+import './Actions/Links'
+import {Filter, Select, Range, AutoComplete} from './../../../build/abc/abc'
+
+// import {Filter, Select, Range, AutoComplete} from 'abc-lib' 
 
 // import Filter from './../../../build/abc_filter/abc_filter'
 // import AutoComplete from './../../../build/abc_autocomplete/abc_autocomplete'
@@ -109,6 +110,7 @@ const abc = Filter.init({
           compare: "fields.available_bikes",
           id:false,
           url_name: "available_bikes",
+          multiple: true
         }
       ]
     },
@@ -130,6 +132,18 @@ const abc = Filter.init({
     // }
 
   })
+
+const container = document.querySelector('.abc-filter');
+const filter = document.querySelector('.btn-filter')
+filter.addEventListener('click', e =>{
+  e.preventDefault();
+  container.classList.toggle('abc-filter--open')
+})
+const reset = document.querySelector('.btn-reset')
+reset.addEventListener('click', e =>{
+  e.preventDefault();
+  abc.reset();
+})
   const events = ['click', 'change', 'keyup', 'input']
   events.forEach( event => {
     document.querySelector('.abc-filter').addEventListener(event, e => {

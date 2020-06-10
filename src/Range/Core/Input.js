@@ -97,6 +97,21 @@ RangeInput.prototype.bindEvents = function(){
         this.update('max')
         this.updateLine('max')
     })
+    if(this.min.target) this.min.target.addEventListener('reset', e => {
+        if(this.multiple && Number(this.min.target.value) <= Number(this.max.target.value) - this.diff) this.update('min')
+        else this.min.target.value = Number(this.max.target.value) - this.diff
+        this.updateLine('min')
+        if(!this.multiple) {
+            this.update('min')
+           
+        }
+        if(this.multiple && Number(this.min.target.value) + this.diff <= Number(this.max.target.value)) this.update('max')
+        else this.max.target.value =  Number(this.min.target.value) + this.diff
+
+        this.update('max')
+        this.updateLine('max')
+    })
+
 }
 RangeInput.prototype.update = function(input){
     this[input].target.setAttribute('value', this[input].target.value)

@@ -1,0 +1,37 @@
+body{
+    padding: 60px;
+}
+main{
+    overflow: hidden;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+
+    @extend %grid;
+
+    position: relative;
+}
+
+.link > div{
+    padding: 0px 0;
+    transition: color .1s linear;
+}
+.link .yellow:hover{
+    color:$yellow
+}
+.link .blue:hover{
+    color:$blue
+}
+.link .red:hover{
+    color:$red
+}
+.link .mediumblue:hover{
+    color:$mediumblue
+}
+.link .purple:hover{
+    color:$purple
+}
+.link .pink:hover{
+    color:$pink
+}

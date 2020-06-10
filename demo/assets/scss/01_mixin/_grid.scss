@@ -1,24 +1,15 @@
 
 //----Content style----//
 %grid--lg {
-  // max-width: $max-width-xl;
   margin: 0 auto;
 }
 
 %grid {
   width     : 100%;
-  // max-width : $max-width-s;
 
   margin    : 0 auto;
 
   list-style: none;
-
-  // @media screen and (min-width:1024px) {
-  //   max-width: $max-width-m;
-  // }
-  // @media screen and (min-width:1151px) {
-  //   max-width: $max-width-xl;
-  // }
 
   //--- grid supported ---//
   @supports (display:grid) {
@@ -28,7 +19,7 @@
     grid-column-gap      : $gap-s;
     grid-row-gap         : $row-s;
     // grid-template-rows: repeat($row-s);
-    @media screen and (min-width:800px) {
+    @media screen and (min-width:980px) {
       grid-template-columns: repeat($nbCol-m, 1fr);
       grid-column-gap      : $gap-m;
       grid-row-gap         : $row-m;
@@ -73,16 +64,12 @@
     @media screen and (min-width:1024px) {
       grid-template-columns: repeat($nbCol-m, 1fr);
       grid-column-gap      : $gap-m;
-      grid-column-row      : $row-m;
-      // grid-template-rows: repeat($row-xl);
-      // grid-row-gap: $gap-xl;
+      grid-row-gap      : $row-m;
     }
     @media screen and (min-width:1151px) {
       grid-template-columns: repeat($nbCol-xl, 1fr);
       grid-column-gap      : $gap-xl;
-      grid-column-row      : $row-xl;
-      // grid-template-rows: repeat($row-xl);
-      // grid-row-gap: $gap-xl;
+      grid-row-gap      : $row-xl;
     }
 
   }

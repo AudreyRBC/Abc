@@ -1,13 +1,44 @@
-.abc-filter, .abc-sidebar{
-    box-shadow: 6px 0 14px 0 rgba(144,134,236,0.12);
+.abc-filter{
+    @include set-col(s,4);
+    @include set-col(md,4, 5);
+    @include set-col(lg,6, 11);
 
-    width: 390px;
-    height: 100vh;
+    &__form{
+        margin-top: 30px;
+    }
+    &__more{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    transform: translateX(0%);
+    @include media-max(md){
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
 
-    position: fixed;
-    top: 0;
-    left: 0;
+        width: 100% ;
+        height: calc(100% - 80px);
 
-    padding: 120px 45px 45px;
+        background: $white;
+        pointer-events: none;
+        transform: translateX(-100%);
+
+        transition: transform .3s ease;
+
+        &--open{
+            transform: translateY(0);
+            pointer-events: auto;
+ 
+        }
+    }
 }
-.abc-filter__form{margin-top: 30px;}
+
+.abc-label{
+    font-weight: 400;
+    text-transform: uppercase;
+    @include rem-size(14);
+    margin-bottom: 10px;
+    display: block;
+}
