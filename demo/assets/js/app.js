@@ -81,23 +81,23 @@ const abc = Filter.init({
           url_name: "contract_name",
         }
       ],
-      range: [
-        {
-          // name: "m_range_min",
-          compare: "fields.available_bike_stands",
-          url_name: "available_bike_stands",
-          multiple: true,
-          limit: 0,
-          min: {
-            name: "abc_range_min",
-            // text_target: '.abc_range_min__label'
-          },
-          max: {
-            name: "abc_range_max",
-            // text_target: '.abc_range_max__label'
-          }
-        }
-      ],
+      // range: [
+      //   {
+      //     name: "abc_range_min",
+      //     compare: "fields.available_bike_stands",
+      //     url_name: "available_bike_stands",
+      //     // multiple: true,
+      //     // limit: 0,
+      //     min: {
+      //       name: "abc_range_min",
+      //       // text_target: '.abc_range_min__label'
+      //     },
+      //     // max: {
+      //     //   name: "abc_range_max",
+      //     //   // text_target: '.abc_range_max__label'
+      //     // }
+      //   }
+      // ],
       select: [
         {
           name: "abc_select--simple",
@@ -170,30 +170,30 @@ reset.addEventListener('click', e =>{
 
 
 
-  Range.init({
-    multiple: true,
-    // diff
-    min: {
-      name: "abc_range_min",
-      label: {
-        target: '.abc_range_min__label',
-        zero:(val) => {return `no stand`},
-        singular:(val) => {return `${val} stand`},
-        plural:(val) => {return `${val} stands`},
-      },
-    },
-    max: {
-      name: "abc_range_max",
-      label: {
-        target: '.abc_range_max__label',
-        zero:(val) => {return `no stand`},
-        singular:(val) => {return `${val} stand`},
-        plural:(val) => {return `${val} stands`},
+  // Range.init({
+  //   multiple: true,
+  //   // diff
+  //   min: {
+  //     name: "abc_range_min",
+  //     label: {
+  //       target: '.abc_range_min__label',
+  //       zero:(val) => {return `no stand`},
+  //       singular:(val) => {return `${val} stand`},
+  //       plural:(val) => {return `${val} stands`},
+  //     },
+  //   },
+  //   // max: {
+  //   //   name: "abc_range_max",
+  //   //   label: {
+  //   //     target: '.abc_range_max__label',
+  //   //     zero:(val) => {return `no stand`},
+  //   //     singular:(val) => {return `${val} stand`},
+  //   //     plural:(val) => {return `${val} stands`},
 
-      },
-    }
-    // body : false
-  })
+  //   //   },
+  //   // }
+  //   // body : false
+  // })
 
   // AutoComplete.init({
   //   url    :  `https://bruxellesdata.opendatasoft.com/api/records/1.0/search/?dataset=stations-villo-disponibilites-en-temps-reel&rows=100`,
